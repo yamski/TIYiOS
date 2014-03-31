@@ -26,4 +26,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)pushButtonOne:(id)sender {
+    self.labelOne.text = @"Change this label";
+}
+- (IBAction)pushButtonTwo:(id)sender {
+    self.labelTwo.text = self.textField.text;
+}
+
+- (IBAction)pushButtonThree:(id)sender {
+    self.labelThree.backgroundColor = [UIColor blueColor];
+}
+- (IBAction)pushButtonFour:(id)sender {
+    self.view.backgroundColor = [UIColor lightGrayColor];
+}
 @end

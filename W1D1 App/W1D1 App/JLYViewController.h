@@ -10,4 +10,18 @@
 
 @interface JLYViewController : UIViewController
 
+- (IBAction)pushButtonOne:(id)sender;
+@property (strong, nonatomic) IBOutlet UILabel *labelOne;
+
+- (IBAction)pushButtonTwo:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UILabel *labelTwo;
+@property (strong, nonatomic) IBOutlet UITextField *textField;
+
+- (IBAction)pushButtonThree:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UILabel *labelThree;
+
+- (IBAction)pushButtonFour:(id)sender;
+
 @end
