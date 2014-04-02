@@ -15,6 +15,7 @@
 
 {
     NSArray *listItems;
+    NSArray *listImages;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -23,9 +24,47 @@
     if (self)
     {
         // Custom initialization
-        //listItems = [[NSArray alloc]initWithObjects:@"Monday", @"Tuesday", @"Wednesday", nil];
-        listItems = @[@"Monday", @"Tuesday", @"Wednesday"];
-        NSLog(@"List items : %@ .... %@", listItems,listItems[0]);
+       
+        
+        listItems = @[@"Ali Houshmand", @"Ashby Thornwell", @"Austen Johnson", @"Austin Nolan", @"Derek Weber", @"Ed Salter", @"Heidi Proske", @"Jeff King", @"Jeffery Moulds", @"Jisha Obukwelu", @"John Yam", @"Jon Fox", @"Savitha Reddy", @"Teddy Conyers", @"TJ Mercer"];
+        
+        listImages = @[
+                       [UIImage imageNamed:@"alihoushmand"],
+                       [UIImage imageNamed:@"ashbythornwell"],
+                       [UIImage imageNamed:@"austenjohnson"],
+                       [UIImage imageNamed:@"austinnolan"],
+                       [UIImage imageNamed:@"derekweber"],
+                       [UIImage imageNamed:@"edsalter"],
+                       [UIImage imageNamed:@"heidi"],
+                       [UIImage imageNamed:@"jeffking"],
+                       [UIImage imageNamed:@"jefferymoulds"],
+                       [UIImage imageNamed:@"jishaobukwelu"],
+                       [UIImage imageNamed:@"johnyam"],
+                       [UIImage imageNamed:@"jonfox"],
+                       [UIImage imageNamed:@"savithareddy"],
+                       [UIImage imageNamed:@"teddyconyers"],
+                       [UIImage imageNamed:@"tjmercer"],
+                       ];
+        
+        self.tableView.contentInset = UIEdgeInsetsMake(50, 0, 0, 0);
+        self.tableView.rowHeight = 100;
+        
+        UIView * header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+        header.backgroundColor = [UIColor lightGrayColor];
+        
+        UILabel * titleHeader = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, 300, 30)];
+        titleHeader.text = @"Iron Peeps";
+        titleHeader.textColor = [UIColor whiteColor];
+        
+        [header addSubview:titleHeader];
+        self.tableView.tableHeaderView = header;
+        
+        //code below is the same as the one above
+        //[self.tableView setTableHeaderView: header];
+        
+         //UIView * footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+        //footer.backgroundColor = [UIColor lightGrayColor];
+        
         
     }
     return self;
@@ -69,8 +108,9 @@
     
     // Configure the cell...
     int index = [indexPath row];
-    NSString * day = listItems[index];
-    cell.textLabel.text = day;
+   
+    cell.textLabel.text = listItems[index];
+    cell.imageView.image = listImages[index];
     
     return cell;
 }
