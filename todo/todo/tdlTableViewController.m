@@ -24,30 +24,32 @@
     if (self)
     {
         // Custom initialization
-       
+      
         
-        listItems = @[@"Ali Houshmand", @"Ashby Thornwell", @"Austen Johnson", @"Austin Nolan", @"Derek Weber", @"Ed Salter", @"Heidi Proske", @"Jeff King", @"Jeffery Moulds", @"Jisha Obukwelu", @"John Yam", @"Jon Fox", @"Savitha Reddy", @"Teddy Conyers", @"TJ Mercer"];
         
-        listImages = @[
-                       [UIImage imageNamed:@"alihoushmand"],
-                       [UIImage imageNamed:@"ashbythornwell"],
-                       [UIImage imageNamed:@"austenjohnson"],
-                       [UIImage imageNamed:@"austinnolan"],
-                       [UIImage imageNamed:@"derekweber"],
-                       [UIImage imageNamed:@"edsalter"],
-                       [UIImage imageNamed:@"heidi"],
-                       [UIImage imageNamed:@"jeffking"],
-                       [UIImage imageNamed:@"jefferymoulds"],
-                       [UIImage imageNamed:@"jishaobukwelu"],
-                       [UIImage imageNamed:@"johnyam"],
-                       [UIImage imageNamed:@"jonfox"],
-                       [UIImage imageNamed:@"savithareddy"],
-                       [UIImage imageNamed:@"teddyconyers"],
-                       [UIImage imageNamed:@"tjmercer"],
-                       ];
+        listItems = @[
+                      @{@"name" : @"Ali Houshmand", @"image" : [UIImage imageNamed:@"alihoushmand"]},
+                      @{@"name" : @"Ashby Thornwell", @"image" : [UIImage imageNamed:@"ashbythornwell"]},
+                      @{@"name" : @"Austen Johnson", @"image" : [UIImage imageNamed:@"austenjohnson"]},
+                      @{@"name" : @"Austin Nolan", @"image" : [UIImage imageNamed:@"austinnolan"]},
+                      @{@"name" : @"Derek Weber", @"image" : [UIImage imageNamed:@"derekweber"]},
+                      @{@"name" : @"Ed Salter", @"image" : [UIImage imageNamed:@"edsalter"]},
+                      @{@"name" : @"Heidi", @"image" : [UIImage imageNamed:@"heidi"]},
+                      @{@"name" : @"Jeff King", @"image" : [UIImage imageNamed:@"jeffking"]},
+                      @{@"name" : @"Jeffery Moulds", @"image" : [UIImage imageNamed:@"jefferymoulds"]},
+                      @{@"name" : @"Jisha Obukwelu", @"image" : [UIImage imageNamed:@"jishaobukwelu"]},
+                      @{@"name" : @"John Yam", @"image" : [UIImage imageNamed:@"johnyam"]},
+                      @{@"name" : @"Jon Fox", @"image" : [UIImage imageNamed:@"jonfox"]},
+                      @{@"name" : @"Savitha Reddy", @"image" : [UIImage imageNamed:@"savithareddy"]},
+                      @{@"name" : @"Teddy Conyers", @"image" : [UIImage imageNamed:@"teddyconyers"]},
+                      @{@"name" : @"T.J. Mercer", @"image" : [UIImage imageNamed:@"tjmercer"]}
+                                                                
+                      ];
+        
+
         
         self.tableView.contentInset = UIEdgeInsetsMake(50, 0, 0, 0);
-        self.tableView.rowHeight = 100;
+        self.tableView.rowHeight = 50;
         
         UIView * header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
         header.backgroundColor = [UIColor lightGrayColor];
@@ -62,8 +64,15 @@
         //code below is the same as the one above
         //[self.tableView setTableHeaderView: header];
         
-         //UIView * footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
-        //footer.backgroundColor = [UIColor lightGrayColor];
+         UIView * footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+        footer.backgroundColor = [UIColor lightGrayColor];
+        
+        UILabel * titleFooter = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, 300, 30)];
+        titleFooter.text = @"this is the footer";
+        titleFooter.textColor = [UIColor whiteColor];
+        
+        [footer addSubview:titleFooter];
+        self.tableView.tableFooterView = footer;
         
         
     }
@@ -103,14 +112,19 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] init];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     
     // Configure the cell...
     int index = [indexPath row];
-   
-    cell.textLabel.text = listItems[index];
-    cell.imageView.image = listImages[index];
+  
+
+    
+    NSDictionary * listItem = listItems[index];
+    cell.textLabel.text = listItem[@"name"];
+    cell.imageView.image = listItem[@"image"];
+    
+    
     
     return cell;
 }
