@@ -11,8 +11,5 @@
 @interface tdlTableViewCell : UITableViewCell
 
 @property (nonatomic) NSDictionary * profileInfo;
-@property (nonatomic) UIImageView * profileImage;
-@property (nonatomic) UILabel * profileLabel;
-@property (nonatomic) UILabel * profileLink;
 
 @end

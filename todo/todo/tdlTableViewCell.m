@@ -10,12 +10,38 @@
 
 @implementation tdlTableViewCell
 
+{
+   
+    UIImageView * profileImage;
+    UILabel * profileName;
+    UILabel * profileURL;
+}
+
+
+
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        profileImage = [[UIImageView alloc] initWithFrame: CGRectMake(20, 20, 60, 60)];
+        profileImage.layer.cornerRadius = 30;
+        profileImage.layer.masksToBounds = YES;
+        [self.contentView addSubview: profileImage];
+        
+        profileName = [[UILabel alloc] initWithFrame: CGRectMake(100, 20, 200, 30)];
+        profileName.textColor = [UIColor darkGrayColor];
+        profileName.font = [UIFont systemFontOfSize: 20];
+        [self.contentView addSubview: profileImage];
+        
+        profileURL = [[UILabel alloc] initWithFrame:CGRectMake(100, 50, 200, 30)];
+        profileURL.textColor = [UIColor lightGrayColor];
+        profileURL.font = [UIFont systemFontOfSize:12];
+        [self.contentView addSubview: profileURL];
+        
+        
+        
         
     }
     return self;
@@ -25,18 +51,16 @@
 
 - (void) setProfileInfo:(NSDictionary *)profileInfo
 {
-    UIImageView * imageView = [[UIImageView alloc] initWithFrame: CGRectMake(20, 20, 60, 60)];
     
-    imageView.image = profileInfo[@"image"];
-    imageView.layer.cornerRadius = 30;
-    imageView.layer.masksToBounds = YES;
+    profileImage.image = profileInfo[@"image"];
+    profileName.text = profileInfo[@"name"];
     
-    [self.contentView addSubview: imageView];
+//  profileURL.text = [profileInfo objectForKey:@"github"];
+//  same version as below. Below is a literal version
+    profileURL.text = profileInfo[@"github"];
     
-    UILabel * contactNames = [[UILabel alloc] initWithFrame: CGRectMake(100, 10, 200, 30)];
-    contactNames.text = profileInfo[@"name"];
-    [self.contentView addSubview: contactNames];
     
+    [self.contentView addSubview:profileName];
     
     _profileInfo = profileInfo;
     
