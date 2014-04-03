@@ -35,6 +35,7 @@
 		D0ABA40D18EC8FFC006C47D5 /* tjmercer.png in Resources */ = {isa = PBXBuildFile; fileRef = D0ABA40018EC8FFC006C47D5 /* tjmercer.png */; };
 		D0ABA40F18EC920D006C47D5 /* austinnolan.png in Resources */ = {isa = PBXBuildFile; fileRef = D0ABA40E18EC920D006C47D5 /* austinnolan.png */; };
 		D0ABA41118EC927F006C47D5 /* edsalter.png in Resources */ = {isa = PBXBuildFile; fileRef = D0ABA41018EC927F006C47D5 /* edsalter.png */; };
+		D0ABA41418EDA796006C47D5 /* tdlTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0ABA41318EDA796006C47D5 /* tdlTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,8 +65,8 @@
 		D07DC47B18EC4AE2006519C0 /* todoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "todoTests-Info.plist"; sourceTree = "<group>"; };
 		D07DC47D18EC4AE2006519C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D07DC47F18EC4AE2006519C0 /* todoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = todoTests.m; sourceTree = "<group>"; };
-		D07DC48918EC4C96006519C0 /* tdlTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tdlTableViewController.h; sourceTree = "<group>"; };
-		D07DC48A18EC4C96006519C0 /* tdlTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tdlTableViewController.m; sourceTree = "<group>"; };
+		D07DC48918EC4C96006519C0 /* tdlTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tdlTableViewController.h; path = todo/tdlTableViewController.h; sourceTree = "<group>"; };
+		D07DC48A18EC4C96006519C0 /* tdlTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = tdlTableViewController.m; path = todo/tdlTableViewController.m; sourceTree = "<group>"; };
 		D0ABA3F418EC8FFC006C47D5 /* alihoushmand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alihoushmand.png; sourceTree = "<group>"; };
 		D0ABA3F518EC8FFC006C47D5 /* ashbythornwell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ashbythornwell.png; sourceTree = "<group>"; };
 		D0ABA3F618EC8FFC006C47D5 /* austenjohnson.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = austenjohnson.png; sourceTree = "<group>"; };
@@ -81,6 +82,8 @@
 		D0ABA40018EC8FFC006C47D5 /* tjmercer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tjmercer.png; sourceTree = "<group>"; };
 		D0ABA40E18EC920D006C47D5 /* austinnolan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = austinnolan.png; sourceTree = "<group>"; };
 		D0ABA41018EC927F006C47D5 /* edsalter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edsalter.png; sourceTree = "<group>"; };
+		D0ABA41218EDA796006C47D5 /* tdlTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tdlTableViewCell.h; path = todo/tdlTableViewCell.h; sourceTree = "<group>"; };
+		D0ABA41318EDA796006C47D5 /* tdlTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = tdlTableViewCell.m; path = todo/tdlTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +113,9 @@
 		D07DC44E18EC4AE2006519C0 = {
 			isa = PBXGroup;
 			children = (
+				D0ABA41218EDA796006C47D5 /* tdlTableViewCell.h */,
+				D0ABA41318EDA796006C47D5 /* tdlTableViewCell.m */,
+				D0ABA41518EDA7BA006C47D5 /* Controllers */,
 				D07DC46018EC4AE2006519C0 /* todo */,
 				D07DC47918EC4AE2006519C0 /* todoTests */,
 				D07DC45918EC4AE2006519C0 /* Frameworks */,
@@ -140,8 +146,6 @@
 		D07DC46018EC4AE2006519C0 /* todo */ = {
 			isa = PBXGroup;
 			children = (
-				D07DC48918EC4C96006519C0 /* tdlTableViewController.h */,
-				D07DC48A18EC4C96006519C0 /* tdlTableViewController.m */,
 				D07DC46918EC4AE2006519C0 /* tdlAppDelegate.h */,
 				D07DC46A18EC4AE2006519C0 /* tdlAppDelegate.m */,
 				D07DC46C18EC4AE2006519C0 /* Images.xcassets */,
@@ -200,6 +204,23 @@
 				D0ABA40018EC8FFC006C47D5 /* tjmercer.png */,
 			);
 			path = ironPeeps;
+			sourceTree = "<group>";
+		};
+		D0ABA41518EDA7BA006C47D5 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D0ABA41618EDA81C006C47D5 /* TableView */,
+				D07DC48918EC4C96006519C0 /* tdlTableViewController.h */,
+				D07DC48A18EC4C96006519C0 /* tdlTableViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		D0ABA41618EDA81C006C47D5 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = TableView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -313,6 +334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0ABA41418EDA796006C47D5 /* tdlTableViewCell.m in Sources */,
 				D07DC46718EC4AE2006519C0 /* main.m in Sources */,
 				D07DC48B18EC4C96006519C0 /* tdlTableViewController.m in Sources */,
 				D07DC46B18EC4AE2006519C0 /* tdlAppDelegate.m in Sources */,
