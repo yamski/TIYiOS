@@ -9,7 +9,7 @@
 #import "tdlTableViewCell.h"
 
 @implementation tdlTableViewCell
-@synthesize profileInfo = _profileInfo;
+
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -21,19 +21,28 @@
     return self;
 }
 
-- (NSDictionary *)profileInfo
-{
-    if (_profileInfo == nil) {
-        _profileInfo = @{@"name": @"Default Name", @"image": [UIImage imageNamed:@"default"]};
-    }
-    
-    return _profileInfo;
-}
+
 
 - (void) setProfileInfo:(NSDictionary *)profileInfo
 {
-    if (profileInfo != nil) _profileInfo = profileInfo;
+    UIImageView * imageView = [[UIImageView alloc] initWithFrame: CGRectMake(20, 20, 60, 60)];
+    
+    imageView.image = profileInfo[@"image"];
+    imageView.layer.cornerRadius = 30;
+    imageView.layer.masksToBounds = YES;
+    
+    [self.contentView addSubview: imageView];
+    
+    UILabel * contactNames = [[UILabel alloc] initWithFrame: CGRectMake(100, 10, 200, 30)];
+    contactNames.text = profileInfo[@"name"];
+    [self.contentView addSubview: contactNames];
+    
+    
+    _profileInfo = profileInfo;
+    
 }
+
+
 
 - (void)awakeFromNib
 {

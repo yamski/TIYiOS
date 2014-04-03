@@ -7,6 +7,7 @@
 //
 
 #import "tdlTableViewController.h"
+#import "tdlTableViewCell.h"
 
 
 
@@ -28,28 +29,28 @@
         
         
         listItems = @[
-                      @{@"name" : @"Ali Houshmand", @"image" : [UIImage imageNamed:@"alihoushmand"]},
-                      @{@"name" : @"Ashby Thornwell", @"image" : [UIImage imageNamed:@"ashbythornwell"]},
-                      @{@"name" : @"Austen Johnson", @"image" : [UIImage imageNamed:@"austenjohnson"]},
-                      @{@"name" : @"Austin Nolan", @"image" : [UIImage imageNamed:@"austinnolan"]},
-                      @{@"name" : @"Derek Weber", @"image" : [UIImage imageNamed:@"derekweber"]},
-                      @{@"name" : @"Ed Salter", @"image" : [UIImage imageNamed:@"edsalter"]},
-                      @{@"name" : @"Heidi", @"image" : [UIImage imageNamed:@"heidi"]},
-                      @{@"name" : @"Jeff King", @"image" : [UIImage imageNamed:@"jeffking"]},
-                      @{@"name" : @"Jeffery Moulds", @"image" : [UIImage imageNamed:@"jefferymoulds"]},
-                      @{@"name" : @"Jisha Obukwelu", @"image" : [UIImage imageNamed:@"jishaobukwelu"]},
-                      @{@"name" : @"John Yam", @"image" : [UIImage imageNamed:@"johnyam"]},
-                      @{@"name" : @"Jon Fox", @"image" : [UIImage imageNamed:@"jonfox"]},
-                      @{@"name" : @"Savitha Reddy", @"image" : [UIImage imageNamed:@"savithareddy"]},
-                      @{@"name" : @"Teddy Conyers", @"image" : [UIImage imageNamed:@"teddyconyers"]},
-                      @{@"name" : @"T.J. Mercer", @"image" : [UIImage imageNamed:@"tjmercer"]}
+                      @{@"name" : @"Ali Houshmand", @"image" : [UIImage imageNamed:@"alihoushmand"], @"github" :@"https://github.com/HoushmandA06" },
+                      @{@"name" : @"Ashby Thornwell", @"image" : [UIImage imageNamed:@"ashbythornwell"], @"github" :@"https://github.com/athornwell"},
+                      @{@"name" : @"Austen Johnson", @"image" : [UIImage imageNamed:@"austenjohnson"], @"github" :@"https://github.com/ajohnson21"},
+                      @{@"name" : @"Austin Nolan", @"image" : [UIImage imageNamed:@"austinnolan"], @"github" :@"https://github.com/adnolan99"},
+                      @{@"name" : @"Derek Weber", @"image" : [UIImage imageNamed:@"derekweber"], @"github" :@"https://github.com/dweber03"},
+                      @{@"name" : @"Ed Salter", @"image" : [UIImage imageNamed:@"edsalter"], @"github" :@"https://github.com/MadArkitekt"},
+                      @{@"name" : @"Heidi", @"image" : [UIImage imageNamed:@"heidi"], @"github" :@"https://github.com/justagirlcoding"},
+                      @{@"name" : @"Jeff King", @"image" : [UIImage imageNamed:@"jeffking"], @"github" :@"https://github.com/rampis"},
+                      @{@"name" : @"Jeffery Moulds", @"image" : [UIImage imageNamed:@"jefferymoulds"], @"github" :@"https://github.com/jdmgithub"},
+                      @{@"name" : @"Jisha Obukwelu", @"image" : [UIImage imageNamed:@"jishaobukwelu"], @"github" :@"https://github.com/Jiobu"},
+                      @{@"name" : @"John Yam", @"image" : [UIImage imageNamed:@"johnyam"], @"github" :@"https://github.com/yamski"},
+                      @{@"name" : @"Jon Fox", @"image" : [UIImage imageNamed:@"jonfox"], @"github" :@"https://github.com/FoxJon"},
+                      @{@"name" : @"Savitha Reddy", @"image" : [UIImage imageNamed:@"savithareddy"], @"github" :@"https://github.com/savithareddy"},
+                      @{@"name" : @"Teddy Conyers", @"image" : [UIImage imageNamed:@"teddyconyers"], @"github" :@"https://github.com/talented76"},
+                      @{@"name" : @"T.J. Mercer", @"image" : [UIImage imageNamed:@"tjmercer"], @"github" :@"https://github.com/gwanunig14"}
                                                                 
                       ];
         
 
         
         self.tableView.contentInset = UIEdgeInsetsMake(50, 0, 0, 0);
-        self.tableView.rowHeight = 50;
+        self.tableView.rowHeight = 100;
         
         UIView * header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
         header.backgroundColor = [UIColor lightGrayColor];
@@ -109,21 +110,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+   tdlTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    }
+    if (cell == nil) cell = [[tdlTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                                    reuseIdentifier: @"cell"];
     
     // Configure the cell...
-    int index = [indexPath row];
+    int index = indexPath.row;
   
-
     
     NSDictionary * listItem = listItems[index];
-    cell.textLabel.text = listItem[@"name"];
-    cell.imageView.image = listItem[@"image"];
-    
+    cell.profileInfo = listItem;
+//    cell.textLabel.text = listItem[@"name"];
+//    cell.imageView.image = listItem[@"image"];
+
     
     
     return cell;
