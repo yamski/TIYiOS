@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface tdlTableViewController : UITableViewController
+@interface tdlTableViewController : UITableViewController <UITextFieldDelegate>
 
 @end

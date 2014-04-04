@@ -47,17 +47,18 @@
     return self;
 }
 
-
+    //this method expects an NSDictionary argument. profileInfo is the parameter name
 
 - (void) setProfileInfo:(NSDictionary *)profileInfo
 {
+    //when we run the profileInfo method, we are setting the image property of the profileImage to equal @"image" key of the NSDictionary we created
     
     profileImage.image = profileInfo[@"image"];
     profileName.text = profileInfo[@"name"];
     
-//  profileURL.text = [profileInfo objectForKey:@"github"];
-//  same version as below. Below is a literal version
-    profileURL.text = profileInfo[@"github"];
+    profileURL.text = [profileInfo objectForKey:@"github"];
+    //  same version as below. Below is a literal version
+   // profileURL.text = profileInfo[@"github"];
     
     
     [self.contentView addSubview:profileName];

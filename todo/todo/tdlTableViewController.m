@@ -15,8 +15,9 @@
 @implementation tdlTableViewController
 
 {
-    NSArray *listItems;
-    NSArray *listImages;
+    NSMutableArray *listItems;
+    UITextField * nameField;
+    
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -28,7 +29,7 @@
       
         
         
-        listItems = @[
+        listItems = [@[
                       @{@"name" : @"Ali Houshmand", @"image" : [UIImage imageNamed:@"alihoushmand"], @"github" :@"https://github.com/HoushmandA06" },
                       @{@"name" : @"Ashby Thornwell", @"image" : [UIImage imageNamed:@"ashbythornwell"], @"github" :@"https://github.com/athornwell"},
                       @{@"name" : @"Austen Johnson", @"image" : [UIImage imageNamed:@"austenjohnson"], @"github" :@"https://github.com/ajohnson21"},
@@ -45,7 +46,9 @@
                       @{@"name" : @"Teddy Conyers", @"image" : [UIImage imageNamed:@"teddyconyers"], @"github" :@"https://github.com/talented76"},
                       @{@"name" : @"T.J. Mercer", @"image" : [UIImage imageNamed:@"tjmercer"], @"github" :@"https://github.com/gwanunig14"}
                                                                 
-                      ];
+                      ] mutableCopy];
+        
+      
         
 
         
@@ -71,12 +74,15 @@
         
         
        
-        UITextField * nameField = [[UITextField alloc] initWithFrame:CGRectMake(20, 20, 160, 30)];
+        nameField = [[UITextField alloc] initWithFrame:CGRectMake(20, 20, 160, 30)];
         [header addSubview:nameField];
         nameField.backgroundColor = [UIColor colorWithWhite:0.0 alpha:.05];
         nameField.layer.cornerRadius = 6;
+        //the next two lines moves the blinking cursor to the right from the very left edge
         nameField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 30)];
         nameField.leftViewMode = UITextFieldViewModeAlways;
+        
+        nameField.delegate = self;
         
         
         
@@ -86,6 +92,10 @@
         [submitButton setTitle:@"New User" forState:UIControlStateNormal];
         submitButton.backgroundColor = [UIColor darkGrayColor];
         submitButton.layer.cornerRadius = 6;
+        
+        [submitButton addTarget:self action:@selector(newUser)
+           forControlEvents:UIControlEventTouchUpInside];
+        
         [header addSubview:submitButton];
         
         UIView * footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
@@ -102,6 +112,29 @@
     }
     return self;
 }
+
+-(void)newUser
+{
+    NSString * userName = nameField.text;
+    
+    nameField.text = @"";
+    
+    [listItems addObject:@{
+       @"name" : userName,
+      // @"image" : [UIImage imageNamed:@"new_user"],
+       @"github" :[NSString stringWithFormat:@"https://github.com/%@",userName]}];
+    
+    [nameField resignFirstResponder];
+    [self.tableView reloadData];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self newUser];
+    return YES;
+    
+}
+
 
 - (void)viewDidLoad
 {
