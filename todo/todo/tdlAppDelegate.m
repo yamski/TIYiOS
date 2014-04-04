@@ -17,7 +17,11 @@
     
     // Override point for customization after application launch.
     
-    self.window.rootViewController = [[tdlTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    tdlTableViewController * tableViewController = [[tdlTableViewController alloc]initWithStyle:UITableViewStylePlain];
+    
+    UINavigationController * navController = [[UINavigationController alloc] initWithRootViewController:tableViewController];
+    
+    self.window.rootViewController = navController;
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
