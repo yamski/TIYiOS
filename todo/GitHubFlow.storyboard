@@ -7,6 +7,7 @@
         <!--Tdl Table View Controller - Root View Controller-->
         <scene sceneID="Tjq-ot-Lxk">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jQb-Kk-2hS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="X6g-Cu-flz" customClass="tdlTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ZpW-NZ-gkm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -32,13 +33,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="QLQ-wm-Xc6"/>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jQb-Kk-2hS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-271" y="15"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="5xZ-hV-tcn">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fd0-ug-Yr2" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="dt1-EL-vKK" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="i57-yq-FrN"/>
@@ -51,13 +52,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="8zb-DY-a1S"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fd0-ug-Yr2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="195" y="8"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FXW-Si-EoD">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TRP-Zh-E8j" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="4Qp-YL-sFa" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YAc-Qg-rMG">
                         <autoresizingMask key="autoresizingMask"/>
@@ -66,7 +67,6 @@
                         <segue destination="X6g-Cu-flz" kind="relationship" relationship="rootViewController" id="dIb-U1-fSo"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TRP-Zh-E8j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-767" y="15"/>
         </scene>

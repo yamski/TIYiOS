@@ -33,7 +33,7 @@
         profileName = [[UILabel alloc] initWithFrame: CGRectMake(100, 20, 200, 30)];
         profileName.textColor = [UIColor darkGrayColor];
         profileName.font = [UIFont systemFontOfSize: 20];
-        [self.contentView addSubview: profileImage];
+        [self.contentView addSubview: profileName];
         
         profileURL = [[UILabel alloc] initWithFrame:CGRectMake(100, 50, 200, 30)];
         profileURL.textColor = [UIColor lightGrayColor];
@@ -43,21 +43,21 @@
     return self;
 }
 
-    //this method expects an NSDictionary argument. profileInfo is the parameter name
+ 
 
 - (void) setProfileInfo:(NSDictionary *)profileInfo
 {
-    //when we run the profileInfo method, we are setting the image property of the profileImage to equal @"image" key of the NSDictionary we created
+   
+    NSURL *imageUrl = [NSURL URLWithString:profileInfo[@"image"]];
     
-    profileImage.image = profileInfo[@"image"];
+    NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
+   
+    UIImage *image = [UIImage imageWithData:imageData];
+    
+    
+    profileImage.image = image;
     profileName.text = profileInfo[@"name"];
-    
-    profileURL.text = [profileInfo objectForKey:@"github"];
-    //  same version as below. Below is a literal version
-   // profileURL.text = profileInfo[@"github"];
-    
-    
-    [self.contentView addSubview:profileName];
+    profileURL.text = profileInfo [@"github"];
     
     _profileInfo = profileInfo;
     
