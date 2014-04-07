@@ -39,10 +39,6 @@
         profileURL.textColor = [UIColor lightGrayColor];
         profileURL.font = [UIFont systemFontOfSize:12];
         [self.contentView addSubview: profileURL];
-        
-        
-        
-        
     }
     return self;
 }

@@ -26,8 +26,6 @@
     if (self)
     {
         // Custom initialization
-      
-        
         
         listItems = [@[
                       @{@"name" : @"Ali Houshmand", @"image" : [UIImage imageNamed:@"alihoushmand"], @"github" :@"https://github.com/HoushmandA06" },
@@ -178,12 +176,18 @@
     return cell;
 }
 
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     NSDictionary * listItem = [self getListItem:indexPath.row];
     NSLog(@"%@",listItem);
+    
+    UIViewController * webController = [[UIViewController alloc] init];
+    
+    UIWebView * webView = [[UIWebView alloc] init];
+    
+    webController.view = webView;
+    
+    
 }
 
 - (NSDictionary *)getListItem:(NSInteger)row
