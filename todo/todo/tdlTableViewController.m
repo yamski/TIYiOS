@@ -22,21 +22,21 @@
     
 }
 
-- (void)toggleEdit
-{
-    [self.tableView setEditing:!self.tableView.editing animated:YES];
-
-}
+//- (void)toggleEdit
+//{
+//    [self.tableView setEditing:!self.tableView.editing animated:YES];
+//
+//}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self)
     {
-       
-        UIBarButtonItem * editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(toggleEdit)];
+//       
+//        UIBarButtonItem * editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(toggleEdit)];
         
-        self.navigationItem.rightBarButtonItem = editButton;
+        
        
         
 //        listItems = [@[
@@ -59,9 +59,8 @@
 //                      ] mutableCopy];
 
         listItems = [@[] mutableCopy];
-      
         
-
+        [self loadListItems];
         
         self.tableView.contentInset = UIEdgeInsetsMake(50, 0, 0, 0);
         self.tableView.rowHeight = 100;
@@ -94,7 +93,6 @@
         nameField.leftViewMode = UITextFieldViewModeAlways;
         
         nameField.delegate = self;
-        
         
         
         [header addSubview:nameField];
@@ -136,8 +134,17 @@
 //       @"github" :[NSString stringWithFormat:@"https://github.com/%@",userName]}];
     
     NSDictionary * userInfo = [tdlGitHubRequest getUserWithUsername:userName];
-    if([[userInfo allKeys] count] == 3)[listItems addObject:userInfo];
-    else NSLog(@"not enough data");
+    if([[userInfo allKeys] count] == 3)
+        {
+            [listItems addObject:userInfo];
+        } else {
+            NSLog(@"not enough data");
+            
+            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Bad Information" message:@"Unable to Add User" delegate:self cancelButtonTitle:@"Try Again" otherButtonTitles:nil];
+            
+            [alertView show];
+        }
+    
     
     
     [nameField resignFirstResponder];
@@ -156,11 +163,8 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -226,7 +230,15 @@
     
     NSDictionary * listItem = [self getListItem:indexPath.row];
     [listItems removeObjectIdenticalTo:listItem];
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
+    
+    tdlTableViewCell *cell = (tdlTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    cell.alpha = 0;
+    
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    
+    [self saveData];
+    
 }
 
 
@@ -244,12 +256,37 @@
     [listItems removeObjectIdenticalTo:sourceItem];
     [listItems insertObject:sourceItem atIndex:[listItems indexOfObject:toItem]];
     
+    [self saveData];
+    
 }
 
 - (NSDictionary *)getListItem:(NSInteger)row
 {
     NSArray * reverseArray = [[listItems reverseObjectEnumerator] allObjects];
     return reverseArray[row];
+}
+
+- (void)saveData
+{
+    NSString *path = [self listArchivePath];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:listItems];
+    [data writeToFile:path options:NSDataWritingAtomic error:nil];
+}
+
+- (NSString *)listArchivePath
+{
+    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = documentDirectories[0];
+    return [documentDirectory stringByAppendingPathComponent:@"list.data"];
+}
+
+- (void)loadListItems
+{
+    NSString *path = [self listArchivePath];
+    if([[NSFileManager defaultManager] fileExistsAtPath:path])
+    {
+        listItems = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+    }
 }
 
 @end
