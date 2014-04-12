@@ -108,6 +108,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+    //requires TVC to be delegate of UITextField
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     itemField.placeholder = @" ";
