@@ -16,7 +16,12 @@
 
 @property (nonatomic) CGPoint position; 
 
+-(UIColor *)randomColor;
+
 @end
+
+
+
 
 
 @protocol SCGCircleDelegate <NSObject>

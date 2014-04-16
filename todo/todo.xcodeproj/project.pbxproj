@@ -211,9 +211,9 @@
 		D0ABA41518EDA7BA006C47D5 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D0ABA41618EDA81C006C47D5 /* TableView */,
 				D07DC48918EC4C96006519C0 /* tdlTableViewController.h */,
 				D07DC48A18EC4C96006519C0 /* tdlTableViewController.m */,
+				D0ABA41618EDA81C006C47D5 /* TableView */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";

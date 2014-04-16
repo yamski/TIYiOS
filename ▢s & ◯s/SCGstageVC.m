@@ -13,6 +13,8 @@
 
 
 
+
+
 @implementation SCGStageVC
 {
     int gameSize;
@@ -24,6 +26,8 @@
     NSMutableDictionary * tappedDots;
     
     NSMutableDictionary * allSquares;
+    
+    UIView * gameBoard; //put dots and squares in here to be able to empty the board
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -43,6 +47,18 @@
     return self;
     
 }
+
+
+-(UIColor *)randomColor
+{
+    CGFloat red = arc4random_uniform(255) / 255.0;
+    CGFloat green = arc4random_uniform(255) / 255.0;
+    CGFloat blue = arc4random_uniform(255) / 255.0;
+    UIColor *color = [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
+    //NSLog(@"%@", color);
+    return color;
+}
+
     //called when self.view loads on screen
 - (void)viewDidLoad
 {
@@ -61,11 +77,17 @@
         for (int sCol = 0; sCol < gameSize - 1; sCol++)
         {
             float squareX = ((circleWidth - squareWidth) * 1.5) + (circleWidth * sCol);
-            float squareY = ((circleWidth - squareWidth) * 1.5) + (circleWidth * sCol) + ((SCREEN_HEIGHT - SCREEN_WIDTH) / 2 );
+            float squareY = ((circleWidth - squareWidth) * 1.5) + (circleWidth * sRow) + ((SCREEN_HEIGHT - SCREEN_WIDTH) / 2 );
             
             SCGSquare * square = [[SCGSquare alloc] initWithFrame:CGRectMake(squareX, squareY, squareWidth, squareWidth)];
             
-            square.backgroundColor = [UIColor lightGrayColor];
+            
+            
+            square.backgroundColor = [UIColor blueColor];
+            NSString * key = [NSString stringWithFormat:@"c%dr%d", sCol, sRow]; // 0,1, c0r1
+            
+            allSquares[key] = square;
+
             
             [self.view addSubview:square];
         }
@@ -82,6 +104,8 @@
             float circleY = (circleWidth * row) + ((SCREEN_HEIGHT - SCREEN_WIDTH) / 2);
 
             SCGCircle * circle = [[SCGCircle alloc] initWithFrame:CGRectMake(circleX, circleY, circleWidth, circleWidth)];
+            
+            
 
             circle.position = (CGPoint){col, row};
 
@@ -103,7 +127,13 @@
 
 - (UIColor *)circleTappedWithPosition:(CGPoint)position
 {
+    // get tappedDots key from position
+    NSString * key = [NSString stringWithFormat:@"c%dr%d", (int)position.x, (int)position.y]; // 0,1, c0r1
     
+    
+    // set player num to value in tappedDots
+    tappedDots[key] = @(playersTurn);
+
     
     UIColor * currentColor = playerColors[playersTurn];
     playersTurn = (playersTurn) ? 0 : 1;
@@ -113,12 +143,12 @@
 
 -(void)checkForSquareAroundPosition:(CGPoint)position
 {
-    @{
-      @"r0c0": @0,
-      @"r0c1": @1,
-      @"r0c2": @2,
-      };
-    
+//    @{
+//      @"r0c0": @0,
+//      @"r0c1": @1,
+//      @"r0c2": @2,
+//      };
+//    
     
     // x = col and y = row
     
@@ -158,6 +188,11 @@
             if(topDotsSame && bottomDotsSame && leftDotsSame && [topLeftDot isEqual:@(player)])
           {
               //player owns square
+              SCGSquare * currentSquare = allSquares[topLeftDot];
+              
+              NSLog(@"%@",topLeftDot);
+              
+              currentSquare.backgroundColor = color;
           }
             
             
