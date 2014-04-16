@@ -29,10 +29,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
-        
         lineColor = [UIColor purpleColor];
         lineWidth = 5.0;
-        
     }
     
 
@@ -44,7 +42,9 @@
 {
     [super viewDidLoad];
     
-    scribbleView = [[DLAStageLines alloc] initWithFrame:self.view.frame];
+//    scribbleView = [[DLAStageLines alloc] initWithFrame:self.view.frame];
+    
+    [self toggleStage];
     
     [self.view addSubview:scribbleView];
     
@@ -156,6 +156,10 @@
 
 - (void)toggleStage
 {
+    //temporary array to grab the lines as were switching UIView
+    NSMutableArray * lines = scribbleView.lines;
+    
+    
     //remove starting view
     [scribbleView removeFromSuperview];
     
@@ -171,8 +175,11 @@
     scribbleView.lineWidth = lineWidth;
     scribbleView.lineColor = lineColor;
     
+    //add the lines to the array so we can switch brushes without clearing previous drawing
+    if(lines != nil) scribbleView.lines = lines;
     
     [self.view insertSubview:scribbleView atIndex:0];
+    
 }
 
 - (void)clickedColorButton:(UIButton *)sender
