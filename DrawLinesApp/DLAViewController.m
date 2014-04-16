@@ -18,6 +18,9 @@
 {
     DLAStageScribble * scribbleView;
     UIView * colorsDrawer;
+    
+    float lineWidth;
+    UIColor *lineColor;
 }
 
 
@@ -25,34 +28,10 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
         
-       //self.view = [[DLAStageLines alloc] initWithFrame:self.view.frame];
-      //self.view = [[DLAStageScribble alloc] initWithFrame:self.view.frame];
-
         
-  
-        
-//        UIButton * buttonOne = [[UIButton alloc] initWithFrame:CGRectMake(30, 380, 50, 50)];
-//        buttonOne.layer.cornerRadius = 10;
-//        buttonOne.backgroundColor = [UIColor greenColor];
-//        [buttonOne addTarget:self action:@selector(clickedColorButton:)
-//            forControlEvents:UIControlEventTouchUpInside];
-//        [self.view addSubview:buttonOne];
-//        
-//        UIButton * buttonTwo = [[UIButton alloc] initWithFrame:CGRectMake(100, 380, 50, 50)];
-//        buttonTwo.layer.cornerRadius = 10;
-//        buttonTwo.backgroundColor = [UIColor yellowColor];
-//        [buttonTwo addTarget:self action:@selector(clickedColorButton:)
-//            forControlEvents:UIControlEventTouchUpInside];
-//        [self.view addSubview:buttonTwo];
-//        
-//        UIButton * buttonThree = [[UIButton alloc] initWithFrame:CGRectMake(170, 380, 50, 50)];
-//        buttonThree.layer.cornerRadius = 10;
-//        buttonThree.backgroundColor = [UIColor redColor];
-//        [buttonThree addTarget:self action:@selector(clickedColorButton:)
-//            forControlEvents:UIControlEventTouchUpInside];
-//        [self.view addSubview:buttonThree];
+        lineColor = [UIColor purpleColor];
+        lineWidth = 5.0;
         
     }
     
@@ -73,6 +52,7 @@
     
     slider.minimumValue = 2.0;
     slider.maximumValue = 20.0;
+    slider.value = lineWidth;
     
     [slider addTarget:self action:@selector(changeSize:) forControlEvents:UIControlEventAllEvents];
     
@@ -103,16 +83,109 @@
     [self.view addSubview:colorsDrawer];
     
     [self.view addSubview:slider];
+    
+    UIButton * toggleButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 50, 80, 40, 40)];
+    toggleButton.backgroundColor = [UIColor purpleColor];
+    toggleButton.layer.cornerRadius = 10;
+    [toggleButton setTitle:@"brush" forState:UIControlStateNormal];
+    toggleButton.titleLabel.font = [UIFont systemFontOfSize:12];
+    toggleButton.titleLabel.textColor = [UIColor whiteColor];
+    
+    [toggleButton addTarget:self action:@selector(toggleStage)
+           forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:toggleButton];
+ 
+    
+    ///////
+    
+    UIButton * undoButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 50, 130, 40, 40)];
+    undoButton.backgroundColor = [UIColor orangeColor];
+    undoButton.layer.cornerRadius = 10;
+    [undoButton setTitle:@"undo" forState:UIControlStateNormal];
+    undoButton.titleLabel.font = [UIFont systemFontOfSize:12];
+    
+    
+    [undoButton addTarget:self action:@selector(undoStage)
+          forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:undoButton];
+    
+    /////
+    
+    UIButton * clearButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 50, 180, 40, 40)];
+    clearButton.backgroundColor = [UIColor blueColor];
+    clearButton.layer.cornerRadius = 10;
+    [clearButton setTitle:@"clear" forState:UIControlStateNormal];
+    clearButton.titleLabel.font = [UIFont systemFontOfSize:12];
+    
+    [clearButton addTarget:self action:@selector(clearStage)
+           forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:clearButton];
+
+    /////
+    
+    UIButton * emailButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 50, 230, 40, 40)];
+    emailButton.backgroundColor = [UIColor clearColor];
+    emailButton.layer.cornerRadius = 10;
+    //emailButton.layer.borderColor = [UIColor lightGrayColor];
+//    [[emailButton layer] setBorderWidth:2.0f];
+//    [[emailButton layer] setBorderColor:[UIColor greenColor].CGColor];
+    
+    [emailButton setImage:[UIImage imageNamed:@"email"] forState:UIControlStateNormal];
+    emailButton.titleLabel.font = [UIFont systemFontOfSize:12];
+    
+//    [emailButton addTarget:self action:@selector()
+//          forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:emailButton];
+    
+    
+}
+
+- (void)undoStage
+{
+    [scribbleView undoStage];
+}
+
+- (void)clearStage
+{
+    [scribbleView clearStage];
+}
+
+- (void)toggleStage
+{
+    //remove starting view
+    [scribbleView removeFromSuperview];
+    
+    
+    //directing pointer to new view object
+    if ([scribbleView isMemberOfClass:[DLAStageScribble class]]) {
+        scribbleView = [[DLAStageLines alloc] initWithFrame:self.view.frame];
+    } else {
+        scribbleView = [[DLAStageScribble alloc] initWithFrame:self.view.frame];
+    }
+    
+    //keeps the value of the color and size when we switch brush
+    scribbleView.lineWidth = lineWidth;
+    scribbleView.lineColor = lineColor;
+    
+    
+    [self.view insertSubview:scribbleView atIndex:0];
 }
 
 - (void)clickedColorButton:(UIButton *)sender
 {
     [scribbleView setLineColor: sender.backgroundColor];
+    lineColor = sender.backgroundColor;
+    
 }
 
 -(void)changeSize:(UISlider *)sender
 {
     [scribbleView setLineWidth:sender.value];
+    lineWidth = sender.value;
 }
 
 - (void)didReceiveMemoryWarning

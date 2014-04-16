@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D0A7473D18FEFE8200F96D3E /* email.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A7473C18FEFE8200F96D3E /* email.png */; };
 		D0ABA60A18FD6730006C47D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0ABA60918FD6730006C47D5 /* Foundation.framework */; };
 		D0ABA60C18FD6730006C47D5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0ABA60B18FD6730006C47D5 /* CoreGraphics.framework */; };
 		D0ABA60E18FD6730006C47D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0ABA60D18FD6730006C47D5 /* UIKit.framework */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D0A7473C18FEFE8200F96D3E /* email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = email.png; path = images/email.png; sourceTree = "<group>"; };
 		D0ABA60618FD6730006C47D5 /* DrawLinesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawLinesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0ABA60918FD6730006C47D5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D0ABA60B18FD6730006C47D5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -86,6 +88,7 @@
 		D0ABA5FD18FD672F006C47D5 = {
 			isa = PBXGroup;
 			children = (
+				D0A7473C18FEFE8200F96D3E /* email.png */,
 				D0ABA63E18FD7D9B006C47D5 /* DLAStageScribble.h */,
 				D0ABA63F18FD7D9B006C47D5 /* DLAStageScribble.m */,
 				D0ABA63818FD6763006C47D5 /* DLAViewController.h */,
@@ -237,6 +240,7 @@
 			files = (
 				D0ABA61418FD6730006C47D5 /* InfoPlist.strings in Resources */,
 				D0ABA61C18FD6730006C47D5 /* Images.xcassets in Resources */,
+				D0A7473D18FEFE8200F96D3E /* email.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,6 +460,7 @@
 				D0ABA63418FD6730006C47D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D0ABA63518FD6730006C47D5 /* Build configuration list for PBXNativeTarget "DrawLinesAppTests" */ = {
 			isa = XCConfigurationList;
@@ -464,6 +469,7 @@
 				D0ABA63718FD6730006C47D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

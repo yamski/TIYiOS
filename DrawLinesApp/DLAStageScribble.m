@@ -9,9 +9,9 @@
 #import "DLAStageScribble.h"
 
 @implementation DLAStageScribble
-{
-    NSMutableArray * scribbles;
-}
+//{
+//    NSMutableArray * self.lines; //going to make this global so Lines UIView can use it
+//}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -25,11 +25,25 @@
         self.lineColor = [UIColor lightGrayColor];
         self.backgroundColor = [UIColor whiteColor];
         
-        scribbles = [@[] mutableCopy];
+        self.lines = [@[] mutableCopy];
     }
     return self;
 }
 
+
+-(void)clearStage
+{
+    [self.lines removeAllObjects];
+    
+    [self setNeedsDisplay];
+}
+
+-(void)undoStage
+{
+    [self.lines removeLastObject];
+    
+    [self setNeedsDisplay];
+}
 
 
 // Only override drawRect: if you perform custom drawing.
@@ -49,13 +63,13 @@
     
      [self.lineColor set];
     
-    for (NSDictionary * scribble in scribbles)
+    for (NSDictionary * line in self.lines)
     {
-        CGContextSetLineWidth(context, [scribble[@"width"]floatValue]);
+        CGContextSetLineWidth(context, [line[@"width"]floatValue]);
         
-        [(UIColor *)scribble[@"color"]set];
+        [(UIColor *)line[@"color"]set];
         
-        NSArray * points = scribble[@"points"];
+        NSArray * points = line[@"points"];
         
         //start the line
         CGPoint start = [points[0] CGPointValue];
@@ -91,7 +105,7 @@
         
         //must turn location (it's a struct) into an object
         // need a dictionary of points to make the line and a dictionary for color of lines
-        [scribbles addObject:[@{
+        [self.lines addObject:[@{
                                 @"color":self.lineColor,
                                 @"width": @(self.lineWidth), //@() turns the float to an NSObject
                                 @"points": [@[[NSValue valueWithCGPoint:location]] mutableCopy]
@@ -105,29 +119,12 @@
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    for (UITouch *touch in touches)
-    {
-         CGPoint location = [touch locationInView:self];
-        
-        
-        //where using addObjects bc the we're adding points as we're drawing
-        //we're not using addObjects with the straight lines bc theres only a start & end pt.
-        [[scribbles lastObject] [@"points"] addObject:[NSValue valueWithCGPoint:location]];
-    }
-    
-    [self setNeedsDisplay];
+    [self doTouch:touches];
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    for (UITouch *touch in touches)
-    {
-        CGPoint location = [touch locationInView:self];
-        
-        [[scribbles lastObject] [@"points"] addObject:[NSValue valueWithCGPoint:location]];
-    }
-    
-    [self setNeedsDisplay];
+    [self doTouch:touches];
 }
 
 -(void)setLineWidth:(float)lineWidth
@@ -140,6 +137,14 @@
 -(void)setLineColor:(UIColor *)newColor
 {
     _lineColor = newColor;
+    [self setNeedsDisplay];
+}
+
+-(void)doTouch:(NSSet *)touches
+{
+    UITouch * touch = [touches allObjects][0];
+    CGPoint location = [touch locationInView:self];
+    [[self.lines lastObject] [@"points"] addObject:[NSValue valueWithCGPoint:location]];
     [self setNeedsDisplay];
 }
 
