@@ -109,6 +109,9 @@
     {
          CGPoint location = [touch locationInView:self];
         
+        
+        //where using addObjects bc the we're adding points as we're drawing
+        //we're not using addObjects with the straight lines bc theres only a start & end pt.
         [[scribbles lastObject] [@"points"] addObject:[NSValue valueWithCGPoint:location]];
     }
     

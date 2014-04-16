@@ -41,20 +41,34 @@
     
     //context is a struct
     CGContextRef context = UIGraphicsGetCurrentContext();
-    [[UIColor blackColor] set];
+    
+    //[[UIColor blackColor] set];
+    [self.lineColor set];
+    
 
 //    CGContextClearRect(context, rect);
     
-    CGContextSetLineWidth(context, 3.0);
+    
+    //lineWidth is avaiable bc its a subclass of StageScribble
+    CGContextSetLineWidth(context, self.lineWidth);
     CGContextSetLineCap(context, kCGLineCapRound);
     
     NSLog(@"%@",lines);
     
     
-    for (NSArray * line in lines)
+    for (NSDictionary * line in lines)
     {
-        CGPoint start = [line[0] CGPointValue];
-        CGPoint end = [line[1] CGPointValue];
+        
+        //this allows up to change colors and line width as we are drawing
+        CGContextSetLineWidth(context, [line[@"width"]floatValue]);
+        
+        [(UIColor *)line[@"color"]set];
+
+        
+        
+        //array in points key
+        CGPoint start = [line[@"points"][0] CGPointValue];
+        CGPoint end = [line[@"points"][1] CGPointValue];
         
         CGContextMoveToPoint(context, start.x, start.y);
         CGContextAddLineToPoint(context, end.x, end.y);
@@ -73,10 +87,23 @@
         //CGPoint is a C struct, not an object
         CGPoint location = [touch locationInView:self];
         
-        [lines addObject:[@[
-                            [NSValue valueWithCGPoint: location],
-                            [NSValue valueWithCGPoint:location]
-                            ] mutableCopy]];
+//        [lines addObject:[@[
+//                            [NSValue valueWithCGPoint: location],
+//                            [NSValue valueWithCGPoint:location]
+//                            ] mutableCopy]];
+        
+        //added from scribble
+        
+        //each drawing line is a dictionary of keys
+        [lines addObject:[@{
+                                @"color":self.lineColor,
+                                @"width": @(self.lineWidth), //@() turns the float to an NSObject
+                                @"points": [@[[NSValue valueWithCGPoint:location],
+                                              [NSValue valueWithCGPoint:location],
+                                              
+                                              ] mutableCopy]
+                                
+                                } mutableCopy]];
         
         NSLog(@"Touch X %f Y %f",location.x, location.y);
     }
@@ -91,8 +118,9 @@
     {
         CGPoint location = [touch locationInView:self];
         
-        //second point in the last object
-        [lines lastObject][1] = [NSValue valueWithCGPoint:location];
+        //second point in the last object. 2nd point get updated every time it moves
+        
+        [lines lastObject][@"points"][1] = [NSValue valueWithCGPoint:location];
         
         NSLog(@"Touch X %f Y %f",location.x, location.y);
     }
@@ -107,7 +135,8 @@
         CGPoint location = [touch locationInView:self];
         
         //second point in the last object
-        [lines lastObject][1] = [NSValue valueWithCGPoint:location];
+        //selects second point in array
+        [lines lastObject][@"points"][1] = [NSValue valueWithCGPoint:location];
 
         
         NSLog(@"Touch X %f Y %f",location.x, location.y);

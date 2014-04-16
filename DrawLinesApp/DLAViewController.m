@@ -65,7 +65,7 @@
 {
     [super viewDidLoad];
     
-    scribbleView = [[DLAStageScribble alloc] initWithFrame:self.view.frame];
+    scribbleView = [[DLAStageLines alloc] initWithFrame:self.view.frame];
     
     [self.view addSubview:scribbleView];
     

@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DLAStageScribble.h"
 
-@interface DLAStageLines : UIView
+//making a subclass
+@interface DLAStageLines : DLAStageScribble
 
 @end
