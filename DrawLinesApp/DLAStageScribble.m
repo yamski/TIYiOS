@@ -55,11 +55,23 @@
     
     CGContextSetLineCap(context, kCGLineCapRound);
     
+    //bezeir curve
+//    CGContextMoveToPoint(context, 50, 50);
+//    CGContextAddCurveToPoint(context, 270, 50, 270, 400, 50, 400);
+    
     CGContextSetLineWidth(context, self.lineWidth);
+    
+   
     
     
     //this resets something?
     //CGContextClearRect(context, rect);
+    
+    CGRect rectangle = CGRectMake(60,170,200,80);
+    
+    CGContextAddEllipseInRect(context, rectangle);
+    
+    CGContextStrokePath(context);
     
      [self.lineColor set];
     
