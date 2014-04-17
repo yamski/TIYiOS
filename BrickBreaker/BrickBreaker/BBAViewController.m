@@ -16,6 +16,10 @@
 @end
 
 @implementation BBAViewController
+{
+    BBALevelController * level;
+    UIButton *startButton;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -23,20 +27,40 @@
     if (self) {
         // Custom initialization
         
-        BBALevelController * level = [[BBALevelController alloc] initWithNibName:nil bundle:nil];
+        level = [[BBALevelController alloc] initWithNibName:nil bundle:nil];
         
         //add the level controller's view to the rootview controller
         [self.view addSubview:level.view];
         
-        [level resetLevel];
+        startButton = [[UIButton alloc] initWithFrame:CGRectMake(130, 65, 200, 200)];
+        startButton.backgroundColor = [UIColor lightGrayColor];
+        startButton.layer.cornerRadius = 100;
+        [self.view addSubview:startButton];
+        
+        
+        [startButton setTitle:@"START" forState:UIControlStateNormal];
+        startButton.titleLabel.textColor = [UIColor whiteColor];
+        [startButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-light" size:30.0]];
+        
+        
+        [startButton addTarget:self action:@selector(goToLevel)
+              forControlEvents:UIControlEventTouchUpInside];
+    
         
     }
     return self;
 }
 
+- (void) goToLevel
+{
+    [startButton removeFromSuperview];
+    [level resetLevel];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     // Do any additional setup after loading the view.
 }
 
