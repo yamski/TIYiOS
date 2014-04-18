@@ -8,8 +8,28 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol BBALevelDelegate;
+
+
 @interface BBALevelController : UIViewController
 
-- (void)resetLevel;
+@property (nonatomic, assign) id<BBALevelDelegate> delegate;
+
+
+-(void)resetLevel;
 
 @end
+
+
+@protocol BBALevelDelegate <NSObject>
+
+@optional
+
+-(void)addPoints:(int)points;
+-(void)gameDone;
+-(void)lifeCounter;
+
+@end
+//what methods are available for the protocol
+
+

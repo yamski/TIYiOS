@@ -49,7 +49,8 @@
 {
     float paddleWidth;
     int points;
-    UILabel * scoreLabel;
+    int lives;
+ 
 }
 
 ///////////////
@@ -62,19 +63,28 @@
     if (self) {
         
         points = 0;
+        lives = 3;
+        
         paddleWidth = 80;
         self.bricks = [@[] mutableCopy];
         self.balls = [@[] mutableCopy];
-        self.view.backgroundColor = [UIColor colorWithRed:0.549f green:0.655f blue:0.690f alpha:.5f];
+        self.view.backgroundColor = [UIColor whiteColor];
+        
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapScreen:)];
+        
+        [self.view addGestureRecognizer:tap];
         
     }
     return self;
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+
 }
 
 - (void)resetLevel
@@ -90,12 +100,30 @@
     //init with all the items on the stage
     self.collider = [[UICollisionBehavior alloc] initWithItems:[self allItems]];
     
+    ////
+    ////
+    //calls collisionBehavior method
+    ////
+    ////
     self.collider.collisionDelegate = self;
     
     self.collider.collisionMode = UICollisionBehaviorModeEverything;
     
     //the view's bounds is the boundry
-    self.collider.translatesReferenceBoundsIntoBoundary = YES;
+   //self.collider.translatesReferenceBoundsIntoBoundary = YES;
+    
+    int w = self.view.frame.size.width;
+    int h = self.view.frame.size.height;
+    
+    [self.collider addBoundaryWithIdentifier:@"ceiling" fromPoint:CGPointMake(0, 0) toPoint:CGPointMake(w, 0)];
+    [self.collider addBoundaryWithIdentifier:@"leftWall" fromPoint:CGPointMake(0, 0) toPoint:CGPointMake(0, h)];
+    [self.collider addBoundaryWithIdentifier:@"rightWall" fromPoint:CGPointMake(w, 0) toPoint:CGPointMake(w, h)];
+    
+    // adding h + 10 so the ball can fall a little below the bottom edge of screen
+    [self.collider addBoundaryWithIdentifier:@"floor" fromPoint:CGPointMake(0, h + 10) toPoint:CGPointMake(w, h + 10)];
+    
+    
+    
     [self.animator addBehavior:self.collider];
     
     self.ballsDynamicProperties = [self createPropertiesForItems:self.balls];
@@ -112,15 +140,7 @@
     self.ballsDynamicProperties.elasticity = 1.0;
     self.ballsDynamicProperties.resistance = 0.0;
     
-    scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 70), (SCREEN_HEIGHT - 40), 60, 20)];
-    scoreLabel.backgroundColor = [UIColor clearColor];
-    scoreLabel.textColor = [UIColor redColor];
-    [scoreLabel setFont:[UIFont systemFontOfSize:20]];
-    scoreLabel.textAlignment = NSTextAlignmentCenter;
-    
-   
-    
-    [self.view addSubview:scoreLabel];
+ 
     
     
 }
@@ -146,10 +166,12 @@
                 [brick removeFromSuperview];
                 [self.collider removeItem:brick];
                 
-                points += 1;
+                points += brick.tag;
                 
                 NSLog(@"Total points = %i", points);
-                scoreLabel.text = [NSString stringWithFormat:@"%i",points];
+                
+                [self.delegate addPoints:points];
+                //scoreLabel.text = [NSString stringWithFormat:@"%i",points];
                 
                 
                 [self pointLabelWithBrick:brick];
@@ -163,14 +185,51 @@
     
 }
 
+-(void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id<UIDynamicItem>)item withBoundaryIdentifier:(id<NSCopying>)identifier atPoint:(CGPoint)p
+{
+        // specifying the identifer as an NSString
+    if ([(NSString *)identifier isEqualToString:@"floor"])
+    {
+        // specifying the id
+        // no need to alloc and init bc item as already been alloc/init, just assigning to ball
+        UIView * ball = (UIView *)item;
+        
+        // NSLog(@"start over");
+        [ball removeFromSuperview];
+        [self.collider removeItem:ball];
+        
+        //find the delegate, if you have this method, i'm going to run the gameDone method
+        //this makes it optional
+        
+        if (
+            //property will remember the address of *delegate
+          [self.delegate respondsToSelector:@selector(gameDone)]
+            )
+        {
+            
+            //we get to call a method that belongs to the delegate's class (also to a diff object, not the instance of the current class). Notice that the method is not global. its not in .h file
+            [self.delegate gameDone];
+        }
+        
+    }
+}
+
 - (void)pointLabelWithBrick:(UIView *)brick
 {
     UILabel *pointLabel = [[UILabel alloc] initWithFrame:brick.frame];
     pointLabel.backgroundColor = [UIColor clearColor];
-    pointLabel.text = @"+1";
+    pointLabel.text = [NSString stringWithFormat:@"+%d",(int)brick.tag];
+    pointLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview: pointLabel];
     
-    [MOVE animateView:pointLabel properties:@{@"alpha":@0, @"duration":@0.6,@"delay":@0.0,@"remove":@YES}];
+    
+    [UIView animateWithDuration:0.4 animations:^{
+        pointLabel.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        [pointLabel removeFromSuperview];
+    }];
+    
+    //[MOVE animateView:pointLabel properties:@{@"alpha":@0, @"duration":@0.6,@"delay":@0.0,@"remove":@YES}];
     
     
     
@@ -205,53 +264,59 @@
                      
 - (void) createPaddle
 {
-    self.paddle = [[UIView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - paddleWidth) / 2, SCREEN_HEIGHT - 20, paddleWidth, 6)];
+    self.paddle = [[UIView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - paddleWidth) / 2, SCREEN_HEIGHT - 40, paddleWidth, 6)];
     
     self.paddle.backgroundColor = [UIColor colorWithWhite:0.5 alpha:1.0];
     
     self.paddle.layer.cornerRadius = 3;
     
     [self.view addSubview: self.paddle];
+    
+    self.attacher = [[UIAttachmentBehavior alloc]initWithItem:self.paddle attachedToAnchor:CGPointMake(CGRectGetMidX(self.paddle.frame), CGRectGetMidY(self.paddle.frame))];
+    
+    [self.animator addBehavior:self.attacher];
 }
 
 - (void) createBricks
 {
-    int brickCols = 6;
-    float brickWidth = (SCREEN_WIDTH - (10 * (brickCols + 1))) / brickCols;
+    int brickCols = 8;
+    int brickRows = 4;
     
-    for (int i = 0; i < brickCols; i++)
+    float brickWidth = (SCREEN_WIDTH - (10 * (brickCols + 1))) / brickCols;
+    float brickHeight = 20;
+    
+    for (int c = 0; c < brickCols; c++)
     {
-        float brickX = ((brickWidth + 10) * i) +10;
+        for (int r = 0; r < brickRows; r++)
+        {
+            
+        float brickX = ((brickWidth + 10) * c) +10;
+        float brickY = ((brickHeight + 10) * r) + 10;
         
-        UIView * brick = [[UIView alloc]initWithFrame:CGRectMake( brickX, 10, brickWidth, 30)];
+        UIView * brick = [[UIView alloc]initWithFrame:CGRectMake(brickX, brickY, brickWidth, brickHeight)];
         
         brick.layer.cornerRadius = 6;
         brick.backgroundColor = [UIColor colorWithWhite:0.7 alpha:1.0];
-        
+            
+        int random = arc4random_uniform(5) * 50;
+        brick.tag = random;
+    
         [self.view addSubview:brick];
         [self.bricks addObject:brick];
-        
-        
-//        for (int i = 0; i < 1; i++)
-//        {
-//            float brickX = ((brickWidth + 10) * i) +10;
-//            
-//            UIView * brick = [[UIView alloc]initWithFrame:CGRectMake( brickX, brickX + 40, brickWidth, 30)];
-//            
-//            brick.layer.cornerRadius = 6;
-//            brick.backgroundColor = [UIColor colorWithWhite:0.7 alpha:1.0];
-//            
-//            [self.view addSubview:brick];
-//            [self.bricks addObject:brick];
-//            
-//        }
-
+        }
      }
 
 }
 
 - (void) createBall
+
 {
+//    int multiBall = 2;
+//    
+//    for (int i=0; i < multiBall; i++)
+//    {
+    
+    
     CGRect frame = self.paddle.frame;
     
     //origin is a CGPoint. It is the top left corner of your frame. In this case the frame is the paddle
@@ -278,5 +343,16 @@
     self.pusher.active = YES; // bc push is instataneous, it will only happend once
     
     [self.animator addBehavior:self.pusher];
+//    }
 }
+
+-(void)tapScreen:(UITapGestureRecognizer *)gr
+{
+    CGPoint location = [gr locationInView:self.view];
+    
+    self.attacher.anchorPoint = CGPointMake(location.x, self.attacher.anchorPoint.y);
+}
+
+
+
 @end

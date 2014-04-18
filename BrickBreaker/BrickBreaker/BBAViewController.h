@@ -10,4 +10,6 @@
 
 @interface BBAViewController : UIViewController
 
+//@property (nonatomic, assign) id<BBALevelDelegate> delegate;
+
 @end
