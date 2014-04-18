@@ -7,6 +7,7 @@
 //
 
 #import "BBALevelController.h"
+#import "MOVE.h"
 
 // adding a delegate. Allows contoller to know collison happened btween 2 items
 @interface BBALevelController () <UICollisionBehaviorDelegate>
@@ -35,6 +36,9 @@
 
 
 
+
+
+
 @end
 
 ///////////////
@@ -44,7 +48,8 @@
 @implementation BBALevelController
 {
     float paddleWidth;
-    float points;
+    int points;
+    UILabel * scoreLabel;
 }
 
 ///////////////
@@ -61,7 +66,6 @@
         self.bricks = [@[] mutableCopy];
         self.balls = [@[] mutableCopy];
         self.view.backgroundColor = [UIColor colorWithRed:0.549f green:0.655f blue:0.690f alpha:.5f];
-        
         
     }
     return self;
@@ -108,6 +112,16 @@
     self.ballsDynamicProperties.elasticity = 1.0;
     self.ballsDynamicProperties.resistance = 0.0;
     
+    scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 70), (SCREEN_HEIGHT - 40), 60, 20)];
+    scoreLabel.backgroundColor = [UIColor clearColor];
+    scoreLabel.textColor = [UIColor redColor];
+    [scoreLabel setFont:[UIFont systemFontOfSize:20]];
+    scoreLabel.textAlignment = NSTextAlignmentCenter;
+    
+   
+    
+    [self.view addSubview:scoreLabel];
+    
     
 }
 
@@ -132,12 +146,14 @@
                 [brick removeFromSuperview];
                 [self.collider removeItem:brick];
                 
-                points += 100;
+                points += 1;
                 
-                //points = points + 100;
-                NSLog(@"Total points = %f", points);
+                NSLog(@"Total points = %i", points);
+                scoreLabel.text = [NSString stringWithFormat:@"%i",points];
+                
                 
                 [self pointLabelWithBrick:brick];
+                
             }
         
             brick.alpha = 0.5;
@@ -151,12 +167,16 @@
 {
     UILabel *pointLabel = [[UILabel alloc] initWithFrame:brick.frame];
     pointLabel.backgroundColor = [UIColor clearColor];
-    pointLabel.text = @"+100";
+    pointLabel.text = @"+1";
     [self.view addSubview: pointLabel];
+    
+    [MOVE animateView:pointLabel properties:@{@"alpha":@0, @"duration":@0.6,@"delay":@0.0,@"remove":@YES}];
     
     
     
 }
+
+
 
 -(UIDynamicItemBehavior *)createPropertiesForItems:(NSArray *)items
 {

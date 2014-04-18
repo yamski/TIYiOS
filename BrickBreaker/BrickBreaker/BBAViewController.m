@@ -32,7 +32,7 @@
         //add the level controller's view to the rootview controller
         [self.view addSubview:level.view];
         
-        startButton = [[UIButton alloc] initWithFrame:CGRectMake(130, 65, 200, 200)];
+        startButton = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH / 2 - 100), (SCREEN_HEIGHT /2) - 100, 200, 200)];
         startButton.backgroundColor = [UIColor lightGrayColor];
         startButton.layer.cornerRadius = 100;
         [self.view addSubview:startButton];
@@ -40,7 +40,7 @@
         
         [startButton setTitle:@"START" forState:UIControlStateNormal];
         startButton.titleLabel.textColor = [UIColor whiteColor];
-        [startButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-light" size:30.0]];
+        [startButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-light" size:45.0]];
         
         
         [startButton addTarget:self action:@selector(goToLevel)
@@ -70,6 +70,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)prefersStatusBarHidden {return YES;}
 /*
 #pragma mark - Navigation
 

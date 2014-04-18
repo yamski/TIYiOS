@@ -21,6 +21,7 @@
 		D0A74770190018EC00F96D3E /* BrickBreakerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A7476F190018EC00F96D3E /* BrickBreakerTests.m */; };
 		D0A7477B19001BC700F96D3E /* BBAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A7477A19001BC700F96D3E /* BBAViewController.m */; };
 		D0A7477E19001D3D00F96D3E /* BBALevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A7477D19001D3D00F96D3E /* BBALevelController.m */; };
+		D0A74782190097C500F96D3E /* MOVE.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A74781190097C500F96D3E /* MOVE.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		D0A7477A19001BC700F96D3E /* BBAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAViewController.m; sourceTree = "<group>"; };
 		D0A7477C19001D3D00F96D3E /* BBALevelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBALevelController.h; sourceTree = "<group>"; };
 		D0A7477D19001D3D00F96D3E /* BBALevelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBALevelController.m; sourceTree = "<group>"; };
+		D0A74780190097C500F96D3E /* MOVE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOVE.h; sourceTree = "<group>"; };
+		D0A74781190097C500F96D3E /* MOVE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOVE.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,9 +116,11 @@
 		D0A74750190018EC00F96D3E /* BrickBreaker */ = {
 			isa = PBXGroup;
 			children = (
-				D0A7477F19001D4500F96D3E /* contollers */,
+				D0A74780190097C500F96D3E /* MOVE.h */,
+				D0A74781190097C500F96D3E /* MOVE.m */,
 				D0A74759190018EC00F96D3E /* BBAAppDelegate.h */,
 				D0A7475A190018EC00F96D3E /* BBAAppDelegate.m */,
+				D0A7477F19001D4500F96D3E /* contollers */,
 				D0A7475C190018EC00F96D3E /* Images.xcassets */,
 				D0A74751190018EC00F96D3E /* Supporting Files */,
 			);
@@ -258,6 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0A74782190097C500F96D3E /* MOVE.m in Sources */,
 				D0A7477E19001D3D00F96D3E /* BBALevelController.m in Sources */,
 				D0A7477B19001BC700F96D3E /* BBAViewController.m in Sources */,
 				D0A7475B190018EC00F96D3E /* BBAAppDelegate.m in Sources */,
