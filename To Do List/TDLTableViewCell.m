@@ -99,6 +99,7 @@
 {
     UIButton * button = (UIButton *)sender;
     [self.delegate setItemPriority:button.tag withItem:self];
+    
 }
 
 
