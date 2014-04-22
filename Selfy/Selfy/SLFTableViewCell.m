@@ -1,30 +1,26 @@
 //
-//  tdlTableViewCell.m
-//  todo
+//  SLFTableViewCell.m
+//  Selfy
 //
-//  Created by JOHN YAM on 4/3/14.
+//  Created by JOHN YAM on 4/21/14.
 //  Copyright (c) 2014 John Yam. All rights reserved.
 //
 
-#import "tdlTableViewCell.h"
+#import "SLFTableViewCell.h"
 
-@implementation tdlTableViewCell
-
+@implementation SLFTableViewCell
 {
-   
     UIImageView * profileImage;
     UILabel * profileName;
     UILabel * profileURL;
+    
 }
-
-
-
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
+        
         profileImage = [[UIImageView alloc] initWithFrame: CGRectMake(20, 20, 60, 60)];
         profileImage.layer.cornerRadius = 30;
         profileImage.layer.masksToBounds = YES;
@@ -40,29 +36,27 @@
         profileURL.font = [UIFont systemFontOfSize:12];
         [self.contentView addSubview: profileURL];
         
+
     }
     return self;
 }
 
 - (void) setProfileInfo:(NSDictionary *)profileInfo
 {
-   
+    
     NSURL *imageUrl = [NSURL URLWithString:profileInfo[@"image"]];
     
     NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
-   
+    
     UIImage *image = [UIImage imageWithData:imageData];
     
-    
     profileImage.image = image;
-    profileName.text = profileInfo[@"name"];
-    profileURL.text = profileInfo [@"github"];
+    profileName.text = profileInfo[@"user_id"];
+    profileURL.text = profileInfo [@"avatar"];
     
     _profileInfo = profileInfo;
     
 }
-
-
 
 - (void)awakeFromNib
 {

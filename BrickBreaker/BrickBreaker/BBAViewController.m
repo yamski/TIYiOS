@@ -36,7 +36,40 @@
     return self;
 }
 
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    // Do any additional setup after loading the view.
+    
+    
+    startButton = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH / 2 - 100), (SCREEN_HEIGHT /2) - 100, 200, 200)];
+    startButton.backgroundColor = [UIColor lightGrayColor];
+    startButton.layer.cornerRadius = 100;
+    [self.view addSubview:startButton];
+    
+    
+    [startButton setTitle:@"START" forState:UIControlStateNormal];
+    startButton.titleLabel.textColor = [UIColor whiteColor];
+    [startButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-light" size:45.0]];
+    
+    
+    [startButton addTarget:self action:@selector(startGame)
+          forControlEvents:UIControlEventTouchUpInside];
+    
+//    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+//    
+//    topScore = [[userDefaults objectForKey:@"topScore"]intValue];
+
+    
+}
+
+
 -(void)scoreCard{
+    
+[scoreLabel removeFromSuperview];
+[livesLabel removeFromSuperview];
     
 scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 100), 0, 100, 20)];
 scoreLabel.backgroundColor = [UIColor clearColor];
@@ -71,32 +104,9 @@ livesLabel.textAlignment = NSTextAlignmentCenter;
     [startButton removeFromSuperview];
     [level resetLevel];
     [self scoreCard];
+    
 }
 
-
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
-    // Do any additional setup after loading the view.
-    
-    
-    startButton = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH / 2 - 100), (SCREEN_HEIGHT /2) - 100, 200, 200)];
-    startButton.backgroundColor = [UIColor lightGrayColor];
-    startButton.layer.cornerRadius = 100;
-    [self.view addSubview:startButton];
-    
-    
-    [startButton setTitle:@"START" forState:UIControlStateNormal];
-    startButton.titleLabel.textColor = [UIColor whiteColor];
-    [startButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-light" size:45.0]];
-    
-    
-    [startButton addTarget:self action:@selector(startGame)
-          forControlEvents:UIControlEventTouchUpInside];
-
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -105,16 +115,6 @@ livesLabel.textAlignment = NSTextAlignmentCenter;
 }
 
 - (BOOL)prefersStatusBarHidden {return YES;}
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 //these bitches are delegates. they declared in the levelcontroller, but were using them in the view contr
 -(void)gameDone
@@ -125,14 +125,29 @@ livesLabel.textAlignment = NSTextAlignmentCenter;
 
 -(void)addPoints:(int)points
 {
-    level.delegate = self;
     scoreLabel.text = [NSString stringWithFormat:@"Score: %i",points];
 }
 
 -(void)lifeCounter:(int)lives
 {
-    level.delegate = self;
-    livesLabel.text = [NSString stringWithFormat:@"Score: %i",lives];
-    
+    livesLabel.text = [NSString stringWithFormat:@"Lives: %i",lives];
 }
+
+//- (void)updatePoints:(int)points
+//{
+//    header.curentScore = points;
+//    if (header.currentScore > topScore)
+//    {
+//        topScore = header.curentScore;
+//        newHighScore = YES;
+//        
+//        NSUserDefaults * userDefault = [NSUserDefaults standardUserDefaults];
+//        
+//        [userDefaults setObject:@(topScore) forKey:@"topScore"];
+//        
+//        //synchronize saves it to your device
+//        [userDefaults synchronize];
+//        
+//    }
+//}
 @end

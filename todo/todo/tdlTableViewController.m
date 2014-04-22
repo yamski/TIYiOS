@@ -193,6 +193,8 @@
     
     
    cell.profileInfo = [self getListItem:indexPath.row];
+    
+ 
    
     
     return cell;

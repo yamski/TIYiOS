@@ -15,7 +15,7 @@
 
 @property (nonatomic, assign) id<BBALevelDelegate> delegate;
 
-
+// we put this in the .h file so that we can use it in other classes. In this case, root VC
 -(void)resetLevel;
 
 @end
@@ -27,9 +27,9 @@
 
 -(void)addPoints:(int)points;
 -(void)gameDone;
--(void)lifeCounter;
+-(void)lifeCounter:(int)lives;
 
 @end
-//what methods are available for the protocol
+
 
 
