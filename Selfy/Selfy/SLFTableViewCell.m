@@ -11,8 +11,9 @@
 @implementation SLFTableViewCell
 {
     UIImageView * profileImage;
+    UIImageView * avatarView;
     UILabel * profileName;
-    UILabel * profileURL;
+    UILabel * captionLabel;
     
 }
 
@@ -21,20 +22,26 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
-        profileImage = [[UIImageView alloc] initWithFrame: CGRectMake(20, 20, 60, 60)];
-        profileImage.layer.cornerRadius = 30;
+        profileImage = [[UIImageView alloc] initWithFrame: CGRectMake(10, 10, 300, 300)];
+        profileImage.layer.cornerRadius = 5;
         profileImage.layer.masksToBounds = YES;
         [self.contentView addSubview: profileImage];
+
+        avatarView = [[UIImageView alloc] initWithFrame: CGRectMake(10, 325, 40, 40)];
+        avatarView.layer.cornerRadius = 20;
+        avatarView.layer.masksToBounds = YES;
+        [self.contentView addSubview: avatarView];
+
         
-        profileName = [[UILabel alloc] initWithFrame: CGRectMake(100, 20, 200, 30)];
+        profileName = [[UILabel alloc] initWithFrame: CGRectMake(60, 320, 200, 30)];
         profileName.textColor = [UIColor darkGrayColor];
         profileName.font = [UIFont systemFontOfSize: 20];
         [self.contentView addSubview: profileName];
         
-        profileURL = [[UILabel alloc] initWithFrame:CGRectMake(100, 50, 200, 30)];
-        profileURL.textColor = [UIColor lightGrayColor];
-        profileURL.font = [UIFont systemFontOfSize:12];
-        [self.contentView addSubview: profileURL];
+        captionLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 340, 200, 30)];
+        captionLabel.textColor = [UIColor lightGrayColor];
+        captionLabel.font = [UIFont systemFontOfSize:12];
+        [self.contentView addSubview: captionLabel];
         
 
     }
@@ -43,18 +50,23 @@
 
 - (void) setProfileInfo:(NSDictionary *)profileInfo
 {
+    _profileInfo = profileInfo;
     
     NSURL *imageUrl = [NSURL URLWithString:profileInfo[@"image"]];
-    
     NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
-    
     UIImage *image = [UIImage imageWithData:imageData];
     
     profileImage.image = image;
-    profileName.text = profileInfo[@"user_id"];
-    profileURL.text = profileInfo [@"avatar"];
     
-    _profileInfo = profileInfo;
+    
+    NSURL *avatarUrl = [NSURL URLWithString:profileInfo[@"avatar"]];
+    NSData *avatarData = [NSData dataWithContentsOfURL:avatarUrl];
+    UIImage *avatar = [UIImage imageWithData:avatarData];
+    
+    avatarView.image = avatar;
+    
+    profileName.text = profileInfo[@"user_id"];
+    captionLabel.text = profileInfo [@"caption"];
     
 }
 

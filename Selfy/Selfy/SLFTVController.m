@@ -8,6 +8,7 @@
 
 #import "SLFTVController.h"
 #import "SLFTableViewCell.h"
+#import <Parse/Parse.h>
 
 @interface SLFTVController ()
 {
@@ -25,32 +26,43 @@
         // Custom initialization
         
         listItems = [@[
-                      @{@"image":[UIImage imageNamed:@"johnyam"],
-                      @"caption": @"Hello world",
-                      @"user_id": @"John",
-                      @"avatar": @"https://github.com/yamski"},
+                      @{@"image":@"http://distilleryimage8.ak.instagram.com/80f4afb00acc11e39d4222000aaa07fd_7.jpg",
+                      @"caption": @"Hello world!",
+                      @"user_id": @"John Yam",
+                      @"avatar": @"http://scontent-b.igcdn.com/hphotos-ash/t51.2885-15/1889151_214157545439581_338089635_n.jpg"},
                       
-//                      @{@"image":@"http://www.clipartbest.com/cliparts/pT5/eXq/pT5eXq76c.jpeg",
-//                        @"caption": @"Hello world",
-//                        @"user_id": @"Yam",
-//                        @"avatar": @"https://github.com/yamski"}
+                      @{@"image":@"http://distilleryimage8.ak.instagram.com/80f4afb00acc11e39d4222000aaa07fd_7.jpg",
+                        @"caption": @"A new caption",
+                        @"user_id": @"Another Guy",
+                        @"avatar": @"http://scontent-b.igcdn.com/hphotos-ash/t51.2885-15/1889151_214157545439581_338089635_n.jpg"}
                       ]
                       mutableCopy];
+        
+        PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
+        testObject[@"foo"] = @"bar";
+        [testObject saveInBackground];
+        
+        
+        PFUser * user = [PFUser currentUser];
+        
+        user.username = @"johnyam";
+        user.password = @"password";
+        [user saveInBackground];
         
         
         self.tableView.contentInset = UIEdgeInsetsMake(30,0, 0, 0);
         self.tableView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20);
-        self.tableView.rowHeight = 100;
+        self.tableView.rowHeight = self.tableView.frame.size.width + 100;
 
         UIView * header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 60)];
-        header.backgroundColor = [UIColor blackColor];
+        header.backgroundColor = [UIColor colorWithRed:0.267f green:0.376f blue:0.486f alpha:1.0f];
         self.tableView.tableHeaderView = header;
         [self.view addSubview:header];
         
         
         UIButton * settings = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 90, 15, 30, 30)];
         settings.layer.cornerRadius = 15;
-        settings.backgroundColor = [UIColor redColor];
+        settings.backgroundColor = [UIColor colorWithRed:0.392f green:0.561f blue:0.722f alpha:1.0f];
         //UIImage *settingsImage = [UIImage imageNamed:@"settings_filled-512.png"];
         //[settings setImage:settingsImage forState:UIControlStateNormal];
         
@@ -97,8 +109,6 @@
 }
 
 
-
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
@@ -116,24 +126,23 @@
     if (cell == nil) cell = [[SLFTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                                     reuseIdentifier: @"cell"];
     
-    NSDictionary *listItem = listItems[indexPath.row];
+    //NSDictionary *listItem = listItems[indexPath.row];
     
     
-    cell.textLabel.text = listItem[@"user_id"];
-    cell.detailTextLabel.text = listItem[@"caption"];
-    cell.imageView.image = listItem[@"image"];
-    
+//    cell.textLabel.text = listItem[@"user_id"];
+//    cell.detailTextLabel.text = listItem[@"caption"];
+//    cell.imageView.image = listItem[@"image"];
     
 //    UIImage *theImage = [UIImage imageNamed:@"johnyam"];
 //    cell.imageView.image = theImage;
 
    //cell.profileInfo = [self getListItem:indexPath.row];
     
-//    cell.profileInfo = [listItems objectAtIndex:indexPath.row];
-//    
-//    NSLog(@"%@",cell.profileInfo);
-//    
-//    NSLog(@"this is indexPath.row: %ld", (long)indexPath.row);
+    cell.profileInfo = [listItems objectAtIndex:indexPath.row];
+    
+    NSLog(@"%@",cell.profileInfo);
+    
+    NSLog(@"this is indexPath.row: %ld", (long)indexPath.row);
     
     return cell;
 }

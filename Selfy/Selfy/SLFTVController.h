@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SLFTVController : UITableViewController
+@interface SLFTVController : UITableViewController 
 
 
 @end

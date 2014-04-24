@@ -24,6 +24,18 @@
 		D0A748461905AE3F00F96D3E /* johnyam.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A748451905AE3F00F96D3E /* johnyam.png */; };
 		D0A748481906060100F96D3E /* plus-512.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A748471906060100F96D3E /* plus-512.png */; };
 		D0A7484C190608D600F96D3E /* settings_filled-512.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A7484B190608D600F96D3E /* settings_filled-512.png */; };
+		D0A7484E1906B89A00F96D3E /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A7484D1906B89A00F96D3E /* Parse.framework */; };
+		D0A748501906BD2B00F96D3E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A7484F1906BD2B00F96D3E /* AudioToolbox.framework */; };
+		D0A748521906BD3900F96D3E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A748511906BD3900F96D3E /* CFNetwork.framework */; };
+		D0A748541906BD4400F96D3E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A748531906BD4400F96D3E /* CoreLocation.framework */; };
+		D0A748561906BD6200F96D3E /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A748551906BD6200F96D3E /* libz.1.1.3.dylib */; };
+		D0A748581906BD7F00F96D3E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A748571906BD7F00F96D3E /* MobileCoreServices.framework */; };
+		D0A7485A1906BD8800F96D3E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A748591906BD8800F96D3E /* QuartzCore.framework */; };
+		D0A7485C1906BD9100F96D3E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A7485B1906BD9100F96D3E /* Security.framework */; };
+		D0A7485E1906BDA100F96D3E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A7485D1906BDA100F96D3E /* StoreKit.framework */; };
+		D0A748601906BDAC00F96D3E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A7485F1906BDAC00F96D3E /* SystemConfiguration.framework */; };
+		D0A748631906D3EA00F96D3E /* SLFLogInVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A748621906D3EA00F96D3E /* SLFLogInVC.m */; };
+		D0A748671906E26000F96D3E /* SLFSelfyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A748661906E26000F96D3E /* SLFSelfyVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +72,20 @@
 		D0A748451905AE3F00F96D3E /* johnyam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = johnyam.png; sourceTree = "<group>"; };
 		D0A748471906060100F96D3E /* plus-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus-512.png"; sourceTree = "<group>"; };
 		D0A7484B190608D600F96D3E /* settings_filled-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings_filled-512.png"; sourceTree = "<group>"; };
+		D0A7484D1906B89A00F96D3E /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		D0A7484F1906BD2B00F96D3E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		D0A748511906BD3900F96D3E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		D0A748531906BD4400F96D3E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D0A748551906BD6200F96D3E /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
+		D0A748571906BD7F00F96D3E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		D0A748591906BD8800F96D3E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D0A7485B1906BD9100F96D3E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		D0A7485D1906BDA100F96D3E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		D0A7485F1906BDAC00F96D3E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		D0A748611906D3EA00F96D3E /* SLFLogInVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLFLogInVC.h; sourceTree = "<group>"; };
+		D0A748621906D3EA00F96D3E /* SLFLogInVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLFLogInVC.m; sourceTree = "<group>"; };
+		D0A748651906E26000F96D3E /* SLFSelfyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLFSelfyVC.h; sourceTree = "<group>"; };
+		D0A748661906E26000F96D3E /* SLFSelfyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLFSelfyVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,8 +93,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0A748601906BDAC00F96D3E /* SystemConfiguration.framework in Frameworks */,
+				D0A7485E1906BDA100F96D3E /* StoreKit.framework in Frameworks */,
+				D0A7485C1906BD9100F96D3E /* Security.framework in Frameworks */,
+				D0A7485A1906BD8800F96D3E /* QuartzCore.framework in Frameworks */,
+				D0A748581906BD7F00F96D3E /* MobileCoreServices.framework in Frameworks */,
+				D0A748561906BD6200F96D3E /* libz.1.1.3.dylib in Frameworks */,
+				D0A748541906BD4400F96D3E /* CoreLocation.framework in Frameworks */,
+				D0A748521906BD3900F96D3E /* CFNetwork.framework in Frameworks */,
+				D0A748501906BD2B00F96D3E /* AudioToolbox.framework in Frameworks */,
 				D0A748121905884C00F96D3E /* CoreGraphics.framework in Frameworks */,
 				D0A748141905884C00F96D3E /* UIKit.framework in Frameworks */,
+				D0A7484E1906B89A00F96D3E /* Parse.framework in Frameworks */,
 				D0A748101905884C00F96D3E /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -108,6 +144,16 @@
 		D0A7480E1905884C00F96D3E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D0A7485F1906BDAC00F96D3E /* SystemConfiguration.framework */,
+				D0A7485D1906BDA100F96D3E /* StoreKit.framework */,
+				D0A7485B1906BD9100F96D3E /* Security.framework */,
+				D0A748591906BD8800F96D3E /* QuartzCore.framework */,
+				D0A748571906BD7F00F96D3E /* MobileCoreServices.framework */,
+				D0A748551906BD6200F96D3E /* libz.1.1.3.dylib */,
+				D0A748531906BD4400F96D3E /* CoreLocation.framework */,
+				D0A748511906BD3900F96D3E /* CFNetwork.framework */,
+				D0A7484F1906BD2B00F96D3E /* AudioToolbox.framework */,
+				D0A7484D1906B89A00F96D3E /* Parse.framework */,
 				D0A7480F1905884C00F96D3E /* Foundation.framework */,
 				D0A748111905884C00F96D3E /* CoreGraphics.framework */,
 				D0A748131905884C00F96D3E /* UIKit.framework */,
@@ -119,9 +165,8 @@
 		D0A748151905884C00F96D3E /* Selfy */ = {
 			isa = PBXGroup;
 			children = (
+				D0A748641906E10C00F96D3E /* controllers */,
 				D0A748441905AE3000F96D3E /* images */,
-				D0A7483E190588CA00F96D3E /* SLFTVController.h */,
-				D0A7483F190588CA00F96D3E /* SLFTVController.m */,
 				D0A7484119058D9C00F96D3E /* SLFTableViewCell.h */,
 				D0A7484219058D9C00F96D3E /* SLFTableViewCell.m */,
 				D0A7481E1905884C00F96D3E /* SLFAppDelegate.h */,
@@ -169,6 +214,19 @@
 				D0A748451905AE3F00F96D3E /* johnyam.png */,
 			);
 			name = images;
+			sourceTree = "<group>";
+		};
+		D0A748641906E10C00F96D3E /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D0A748611906D3EA00F96D3E /* SLFLogInVC.h */,
+				D0A748621906D3EA00F96D3E /* SLFLogInVC.m */,
+				D0A7483E190588CA00F96D3E /* SLFTVController.h */,
+				D0A7483F190588CA00F96D3E /* SLFTVController.m */,
+				D0A748651906E26000F96D3E /* SLFSelfyVC.h */,
+				D0A748661906E26000F96D3E /* SLFSelfyVC.m */,
+			);
+			name = controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,9 +328,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0A748631906D3EA00F96D3E /* SLFLogInVC.m in Sources */,
 				D0A748201905884C00F96D3E /* SLFAppDelegate.m in Sources */,
 				D0A7484319058D9C00F96D3E /* SLFTableViewCell.m in Sources */,
 				D0A74840190588CA00F96D3E /* SLFTVController.m in Sources */,
+				D0A748671906E26000F96D3E /* SLFSelfyVC.m in Sources */,
 				D0A7481C1905884C00F96D3E /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,6 +450,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Selfy/Selfy-Prefix.pch";
 				INFOPLIST_FILE = "Selfy/Selfy-Info.plist";
@@ -403,6 +467,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Selfy/Selfy-Prefix.pch";
 				INFOPLIST_FILE = "Selfy/Selfy-Info.plist";
@@ -470,6 +538,7 @@
 				D0A7483A1905884C00F96D3E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D0A7483B1905884C00F96D3E /* Build configuration list for PBXNativeTarget "SelfyTests" */ = {
 			isa = XCConfigurationList;
@@ -478,6 +547,7 @@
 				D0A7483D1905884C00F96D3E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

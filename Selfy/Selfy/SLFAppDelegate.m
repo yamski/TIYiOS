@@ -8,6 +8,9 @@
 
 #import "SLFAppDelegate.h"
 #import "SLFTVController.h"
+#import <Parse/Parse.h>
+#import "SLFLogInVC.h"
+#import "SLFSelfyVC.h"
 
 @implementation SLFAppDelegate
 
@@ -16,7 +19,17 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    self.window.rootViewController = [[SLFTVController alloc] initWithStyle:UITableViewStylePlain];
+    [Parse setApplicationId:@"H1JHLiA7kFRmIWvtbkHDcnA1Caj4UofHxRx6UZAB"
+                  clientKey:@"dKLyXccYHUy1MXNgrdR2Sq5b1fNQoTr4clSXVd3p"];
+    
+    [PFUser enableAutomaticUser];
+    
+    //self.window.rootViewController = [[SLFTVController alloc] initWithStyle:UITableViewStylePlain];
+    
+    //self.window.rootViewController = [[SLFLogInVC alloc] initWithNibName:nil bundle:nil];
+    
+    self.window.rootViewController = [[SLFSelfyVC alloc] initWithNibName:nil bundle:nil];
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
