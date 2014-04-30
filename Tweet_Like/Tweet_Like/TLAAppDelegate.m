@@ -9,7 +9,7 @@
 #import "TLAAppDelegate.h"
 #import "TLATableVC.h"
 #import "TLANavController.h"
-#import "TLAUIView.h"
+
 
 @implementation TLAAppDelegate
 
@@ -28,8 +28,9 @@
     
     self.window.rootViewController = nc;
     
-    [nc addTableViewController: [[TLATableVC alloc]initWithStyle:UITableViewStylePlain]];
+    TLATableVC * tvc = [[TLATableVC alloc]initWithStyle:UITableViewStylePlain];
     
+    [nc addTableViewController: tvc];
     
     
     self.window.backgroundColor = [UIColor whiteColor];

@@ -23,7 +23,6 @@
 		D0A748A81907FA4D00F96D3E /* TLATableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A748A71907FA4D00F96D3E /* TLATableViewCell.m */; };
 		D0A748AA1907FDAF00F96D3E /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A748A91907FDAF00F96D3E /* heart.png */; };
 		D0E3ACF71908188D00CF5D40 /* TLANavController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E3ACF61908188D00CF5D40 /* TLANavController.m */; };
-		D0E3ACFB1908389700CF5D40 /* TLAUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E3ACFA1908389700CF5D40 /* TLAUIView.m */; };
 		D0E3ACFD19083B7500CF5D40 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D0E3ACFC19083B7500CF5D40 /* logo.png */; };
 /* End PBXBuildFile section */
 
@@ -61,8 +60,6 @@
 		D0A748A91907FDAF00F96D3E /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart.png; path = ../../../../Desktop/heart.png; sourceTree = "<group>"; };
 		D0E3ACF51908188D00CF5D40 /* TLANavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLANavController.h; sourceTree = "<group>"; };
 		D0E3ACF61908188D00CF5D40 /* TLANavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLANavController.m; sourceTree = "<group>"; };
-		D0E3ACF91908389700CF5D40 /* TLAUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLAUIView.h; sourceTree = "<group>"; };
-		D0E3ACFA1908389700CF5D40 /* TLAUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLAUIView.m; sourceTree = "<group>"; };
 		D0E3ACFC19083B7500CF5D40 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = ../../../../Desktop/logo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,8 +95,6 @@
 				D0E3ACFC19083B7500CF5D40 /* logo.png */,
 				D0A748A61907FA4D00F96D3E /* TLATableViewCell.h */,
 				D0A748A71907FA4D00F96D3E /* TLATableViewCell.m */,
-				D0E3ACF91908389700CF5D40 /* TLAUIView.h */,
-				D0E3ACFA1908389700CF5D40 /* TLAUIView.m */,
 				D0A7487A1907F64500F96D3E /* Tweet_Like */,
 				D0A748931907F64500F96D3E /* Tweet_LikeTests */,
 				D0A748731907F64500F96D3E /* Frameworks */,
@@ -276,7 +271,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0E3ACFB1908389700CF5D40 /* TLAUIView.m in Sources */,
 				D0A748851907F64500F96D3E /* TLAAppDelegate.m in Sources */,
 				D0A748A81907FA4D00F96D3E /* TLATableViewCell.m in Sources */,
 				D0E3ACF71908188D00CF5D40 /* TLANavController.m in Sources */,

@@ -10,11 +10,12 @@
 
 //I am going to import in the .m,
 //later, you will know what this class is when you implement the method
+
 @class TLATableVC;
 
 
 @interface TLANavController : UINavigationController
 
-- (void)addTableViewController:(TLATableVC *)viewController;
+- (void)addTableViewController:(TLATableVC*)viewController;
 
 @end

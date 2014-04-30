@@ -77,23 +77,22 @@
 //at some point, we'll have multiple controllers. This will allow us to remember to TVController
  //adding a child view controller
 
-- (void)addTableViewController:(TLATableVC *)viewController
+- (void)addTableViewController:(TLATableVC *)viewController  //???
 {
     
     TVC = viewController;
    
     [self pushViewController:viewController animated:NO];
     
-    if ([TVC isTweetItemsEmpty]) {
-        
+    if ([TVC isTweetItemsEmpty])
+    {
         //manually sending the button
-        //[self newTweet:addNew];
+        [self newTweet:addNew];
         
         //same as above line
         //[addNew addTarget:self action:@selector(newTweet:) forControlEvents:UIControlEventTouchUpInside];
 
-        
-     [self newTweet:nil];
+     //[self newTweet:nil];
     }
     
 }
@@ -133,9 +132,6 @@
         textBox.delegate = self;
         [newForm  addSubview:textBox];
         
-        
-        
-        
         UIButton * submit = [[UIButton alloc]initWithFrame:CGRectMake(40, 340, 100, 30)];
         submit.backgroundColor =[UIColor colorWithRed:0.086f green:0.859f blue:0.337f alpha:1.0f] ;
         submit.layer.cornerRadius = 10;
@@ -159,7 +155,6 @@
 {
     if([textBox.text isEqualToString:@""]) return;
     
-    
     [TVC.tweetItems insertObject:@{
                                 @"likes": @0,
                                 @"tweet": textBox.text
@@ -168,18 +163,14 @@
     
     [newForm removeFromSuperview];
     [blueBox removeFromSuperview];
-
     
     //NSString * newTweet = textBox.text;
-    
   
     //NSLog(@"Class of base VC %@", [self.viewControllers[0] class]);
     
     //TLATableVC * tableVC = (TLATableVC *)self.viewControllers[0]; // our NavController contains the TableVC.
     
     //[tableVC loadNewTweet:newTweet];
-    
-
 }
 
 -(void)cancelTweet
