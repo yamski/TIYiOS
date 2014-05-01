@@ -30,7 +30,7 @@
         [self.view addSubview:imageView];
         
         UIView * navBar = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
-        navBar.backgroundColor = [UIColor blueColor];
+        navBar.backgroundColor = [UIColor colorWithRed:0.776f green:0.635f blue:0.098f alpha:1.0f];;
         [self.view addSubview:navBar];
         
         UIButton * libraryButton = [[UIButton alloc]initWithFrame:CGRectMake(10, 10, 30, 30)];
@@ -42,9 +42,36 @@
         
         [navBar addSubview:libraryButton];
         
+        
+        UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0,SCREEN_HEIGHT - 100, SCREEN_WIDTH, 100)];
+        
+        scroll.pagingEnabled = YES;
+        scroll.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
+        scroll.backgroundColor = [UIColor lightGrayColor];
+        
+        [self.view addSubview:scroll];
+        
+        int filterCount = 20;
+        
+        for ( int i=0; i < filterCount; i++)
+            {
+        
+                UIView * squares = [[UIView alloc]initWithFrame:CGRectMake((i* 90), 0, 80, 80)];
+                
+                squares.backgroundColor = [UIColor whiteColor];
+            
+
+                
+                [scroll addSubview:squares];
+            }
+        
+        scroll.contentSize = CGSizeMake(90 * filterCount, 80);
+    
     }
     return self;
 }
+
+
 
 -(void)choosePhoto
 {
@@ -72,7 +99,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+   
+
+    
 }
 
 - (void)didReceiveMemoryWarning
