@@ -8,9 +8,13 @@
 
 #import "BBALevelController.h"
 
+#import <AVFoundation/AVFoundation.h>
+
 
 // adding a delegate. Allows contoller to know collison happened btween 2 items
 @interface BBALevelController () <UICollisionBehaviorDelegate>
+
+@property (nonatomic) AVAudioPlayer * player;
 
 // declaring properties here makes them private. .h = public
 @property (nonatomic) UIView * paddle;
@@ -62,10 +66,23 @@
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapScreen:)];
         
         [self.view addGestureRecognizer:tap];
+        
+        
+        self.player = [[AVAudioPlayer alloc]init];
     }
     return self;
 }
 
+-(void)playSoundWithName:(NSString *)soundName
+{
+    NSString * file = [[NSBundle mainBundle] pathForResource:soundName ofType:@"wav"];
+    
+    NSURL *url = [[NSURL alloc] initFileURLWithPath:file];
+    
+    self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+    
+    [self.player play];
+}
 
 - (void)viewDidLoad
 {
@@ -129,6 +146,13 @@
 //item 1 and 2 are colliding, do something
 - (void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id<UIDynamicItem>)item1 withItem:(id<UIDynamicItem>)item2 atPoint:(CGPoint)p
 {
+    if ([item1 isEqual:self.paddle] || [item2 isEqual:self.paddle])
+    {
+        [self playSoundWithName:@"Blip 001"];
+        
+    }
+    
+    
     UIView * tempBrick;
     
     for (UIView * brick in self.bricks)
@@ -156,6 +180,9 @@
         }
     }
     if (tempBrick != nil) [self.bricks removeObjectIdenticalTo:tempBrick];
+    
+    [self playSoundWithName:@"Jump 001"];
+    
 }
 
 -(void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id<UIDynamicItem>)item withBoundaryIdentifier:(id<NSCopying>)identifier atPoint:(CGPoint)p

@@ -19,7 +19,11 @@
 		D0517C4519116D9300D54A79 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0517C2D19116D9200D54A79 /* UIKit.framework */; };
 		D0517C4D19116D9300D54A79 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0517C4B19116D9300D54A79 /* InfoPlist.strings */; };
 		D0517C4F19116D9300D54A79 /* PullPicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0517C4E19116D9300D54A79 /* PullPicTests.m */; };
-		D0517C6019117FB000D54A79 /* PPAPicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0517C5F19117FB000D54A79 /* PPAPicViewController.m */; };
+		D0517C6019117FB000D54A79 /* PPAPicRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0517C5F19117FB000D54A79 /* PPAPicRootViewController.m */; };
+		D0517C66191283C200D54A79 /* PPAFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0517C65191283C200D54A79 /* PPAFilterController.m */; };
+		D0517CAF19141EA000D54A79 /* boss.png in Resources */ = {isa = PBXBuildFile; fileRef = D0517CAC19141EA000D54A79 /* boss.png */; };
+		D0517CB019141EA000D54A79 /* HSBColorControlVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0517CAE19141EA000D54A79 /* HSBColorControlVC.m */; };
+		D0517CB3191422B600D54A79 /* BlurViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0517CB2191422B600D54A79 /* BlurViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,8 +53,15 @@
 		D0517C4A19116D9300D54A79 /* PullPicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PullPicTests-Info.plist"; sourceTree = "<group>"; };
 		D0517C4C19116D9300D54A79 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D0517C4E19116D9300D54A79 /* PullPicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PullPicTests.m; sourceTree = "<group>"; };
-		D0517C5E19117FB000D54A79 /* PPAPicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPAPicViewController.h; sourceTree = "<group>"; };
-		D0517C5F19117FB000D54A79 /* PPAPicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPAPicViewController.m; sourceTree = "<group>"; };
+		D0517C5E19117FB000D54A79 /* PPAPicRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPAPicRootViewController.h; sourceTree = "<group>"; };
+		D0517C5F19117FB000D54A79 /* PPAPicRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPAPicRootViewController.m; sourceTree = "<group>"; };
+		D0517C64191283C200D54A79 /* PPAFilterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPAFilterController.h; sourceTree = "<group>"; };
+		D0517C65191283C200D54A79 /* PPAFilterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPAFilterController.m; sourceTree = "<group>"; };
+		D0517CAC19141EA000D54A79 /* boss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = boss.png; path = ../../../../Desktop/HueSaturationBrightness/boss.png; sourceTree = "<group>"; };
+		D0517CAD19141EA000D54A79 /* HSBColorControlVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HSBColorControlVC.h; path = ../../../../Desktop/HueSaturationBrightness/HSBColorControlVC.h; sourceTree = "<group>"; };
+		D0517CAE19141EA000D54A79 /* HSBColorControlVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HSBColorControlVC.m; path = ../../../../Desktop/HueSaturationBrightness/HSBColorControlVC.m; sourceTree = "<group>"; };
+		D0517CB1191422B600D54A79 /* BlurViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlurViewController.h; path = "../../../../Desktop/blur controller/BlurViewController.h"; sourceTree = "<group>"; };
+		D0517CB2191422B600D54A79 /* BlurViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BlurViewController.m; path = "../../../../Desktop/blur controller/BlurViewController.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +91,15 @@
 		D0517C1D19116D9200D54A79 = {
 			isa = PBXGroup;
 			children = (
-				D0517C5E19117FB000D54A79 /* PPAPicViewController.h */,
-				D0517C5F19117FB000D54A79 /* PPAPicViewController.m */,
+				D0517C5E19117FB000D54A79 /* PPAPicRootViewController.h */,
+				D0517C5F19117FB000D54A79 /* PPAPicRootViewController.m */,
+				D0517CB1191422B600D54A79 /* BlurViewController.h */,
+				D0517CB2191422B600D54A79 /* BlurViewController.m */,
+				D0517C64191283C200D54A79 /* PPAFilterController.h */,
+				D0517C65191283C200D54A79 /* PPAFilterController.m */,
+				D0517CAC19141EA000D54A79 /* boss.png */,
+				D0517CAD19141EA000D54A79 /* HSBColorControlVC.h */,
+				D0517CAE19141EA000D54A79 /* HSBColorControlVC.m */,
 				D0517C2F19116D9200D54A79 /* PullPic */,
 				D0517C4819116D9300D54A79 /* PullPicTests */,
 				D0517C2819116D9200D54A79 /* Frameworks */,
@@ -227,6 +245,7 @@
 			files = (
 				D0517C3419116D9200D54A79 /* InfoPlist.strings in Resources */,
 				D0517C3C19116D9300D54A79 /* Images.xcassets in Resources */,
+				D0517CAF19141EA000D54A79 /* boss.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,9 +264,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0517C6019117FB000D54A79 /* PPAPicViewController.m in Sources */,
+				D0517C6019117FB000D54A79 /* PPAPicRootViewController.m in Sources */,
+				D0517CB3191422B600D54A79 /* BlurViewController.m in Sources */,
+				D0517CB019141EA000D54A79 /* HSBColorControlVC.m in Sources */,
 				D0517C3A19116D9300D54A79 /* PPAAppDelegate.m in Sources */,
 				D0517C3619116D9200D54A79 /* main.m in Sources */,
+				D0517C66191283C200D54A79 /* PPAFilterController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

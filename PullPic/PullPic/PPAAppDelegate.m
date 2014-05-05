@@ -8,7 +8,7 @@
 
 #import "PPAAppDelegate.h"
 
-#import "PPAPicViewController.h"
+#import "PPAPicRootViewController.h"
 
 @implementation PPAAppDelegate
 
@@ -17,7 +17,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    self.window.rootViewController = [[PPAPicViewController alloc] initWithNibName:nil bundle:nil];
+    self.window.rootViewController = [[PPAPicRootViewController alloc] initWithNibName:nil bundle:nil];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

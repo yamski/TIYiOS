@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D0517D0B1917D5BE00D54A79 /* Arcade Echo FX 001.wav in Resources */ = {isa = PBXBuildFile; fileRef = D0517D0A1917D5BE00D54A79 /* Arcade Echo FX 001.wav */; };
+		D0517D0D1917D5E500D54A79 /* Jump 001.wav in Resources */ = {isa = PBXBuildFile; fileRef = D0517D0C1917D5E500D54A79 /* Jump 001.wav */; };
+		D0517D0F1917DAE600D54A79 /* Blip 001.wav in Resources */ = {isa = PBXBuildFile; fileRef = D0517D0E1917DAE600D54A79 /* Blip 001.wav */; };
 		D0A7474B190018EC00F96D3E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A7474A190018EC00F96D3E /* Foundation.framework */; };
 		D0A7474D190018EC00F96D3E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A7474C190018EC00F96D3E /* CoreGraphics.framework */; };
 		D0A7474F190018EC00F96D3E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A7474E190018EC00F96D3E /* UIKit.framework */; };
@@ -34,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D0517D0A1917D5BE00D54A79 /* Arcade Echo FX 001.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Arcade Echo FX 001.wav"; path = "../../../../Desktop/Sounds/8-Bit Kit Volume1/Arcade Echo FX 001.wav"; sourceTree = "<group>"; };
+		D0517D0C1917D5E500D54A79 /* Jump 001.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Jump 001.wav"; path = "../../../../Desktop/Sounds/8-Bit Kit Volume1/Jump 001.wav"; sourceTree = "<group>"; };
+		D0517D0E1917DAE600D54A79 /* Blip 001.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Blip 001.wav"; path = "../../../../Desktop/Sounds/8-Bit Kit Volume1/Blip 001.wav"; sourceTree = "<group>"; };
 		D0A74747190018EC00F96D3E /* BrickBreaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrickBreaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0A7474A190018EC00F96D3E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D0A7474C190018EC00F96D3E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -80,9 +86,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D0517D091917D59B00D54A79 /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				D0517D0A1917D5BE00D54A79 /* Arcade Echo FX 001.wav */,
+				D0517D0C1917D5E500D54A79 /* Jump 001.wav */,
+				D0517D0E1917DAE600D54A79 /* Blip 001.wav */,
+			);
+			name = sounds;
+			sourceTree = "<group>";
+		};
 		D0A7473E190018EB00F96D3E = {
 			isa = PBXGroup;
 			children = (
+				D0517D091917D59B00D54A79 /* sounds */,
 				D0A74750190018EC00F96D3E /* BrickBreaker */,
 				D0A74769190018EC00F96D3E /* BrickBreakerTests */,
 				D0A74749190018EC00F96D3E /* Frameworks */,
@@ -239,7 +256,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0A74755190018EC00F96D3E /* InfoPlist.strings in Resources */,
+				D0517D0F1917DAE600D54A79 /* Blip 001.wav in Resources */,
+				D0517D0D1917D5E500D54A79 /* Jump 001.wav in Resources */,
 				D0A7475D190018EC00F96D3E /* Images.xcassets in Resources */,
+				D0517D0B1917D5BE00D54A79 /* Arcade Echo FX 001.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +478,7 @@
 				D0A74775190018EC00F96D3E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D0A74776190018EC00F96D3E /* Build configuration list for PBXNativeTarget "BrickBreakerTests" */ = {
 			isa = XCConfigurationList;
@@ -466,6 +487,7 @@
 				D0A74778190018EC00F96D3E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
