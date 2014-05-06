@@ -9,6 +9,7 @@
 #import "PNAAppDelegate.h"
 #import "PNAViewController.h"
 #import "PNAWorldVController.h"
+#import "PNAPixelWorld2.h"
 
 @implementation PNAAppDelegate
 
@@ -21,7 +22,9 @@
     //self.window.rootViewController = [[PNAViewController alloc] initWithNibName:nil bundle:nil];
 
     
-    self.window.rootViewController = [[PNAWorldVController alloc] initWithNibName:nil bundle:nil];
+    //self.window.rootViewController = [[PNAWorldVController alloc] initWithNibName:nil bundle:nil];
+    
+    self.window.rootViewController = [[PNAPixelWorld2 alloc] initWithNibName:nil bundle:nil];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

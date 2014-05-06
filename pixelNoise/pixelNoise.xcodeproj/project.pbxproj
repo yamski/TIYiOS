@@ -27,6 +27,7 @@
 		D0517D071917CD5000D54A79 /* flick_alert.wav in Resources */ = {isa = PBXBuildFile; fileRef = D0517D021917CD5000D54A79 /* flick_alert.wav */; };
 		D0517D081917CD5000D54A79 /* triangle_alert.wav in Resources */ = {isa = PBXBuildFile; fileRef = D0517D031917CD5000D54A79 /* triangle_alert.wav */; };
 		D0517D121917F10C00D54A79 /* PNAWorldVController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0517D111917F10C00D54A79 /* PNAWorldVController.m */; };
+		D0517D151919155200D54A79 /* PNAPixelWorld2.m in Sources */ = {isa = PBXBuildFile; fileRef = D0517D141919155200D54A79 /* PNAPixelWorld2.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,8 @@
 		D0517D031917CD5000D54A79 /* triangle_alert.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = triangle_alert.wav; path = ../../../../Desktop/Sounds/narfstuff_ui_sounds/buttons/on_alert/triangle_alert.wav; sourceTree = "<group>"; };
 		D0517D101917F10C00D54A79 /* PNAWorldVController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNAWorldVController.h; sourceTree = "<group>"; };
 		D0517D111917F10C00D54A79 /* PNAWorldVController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNAWorldVController.m; sourceTree = "<group>"; };
+		D0517D131919155200D54A79 /* PNAPixelWorld2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNAPixelWorld2.h; sourceTree = "<group>"; };
+		D0517D141919155200D54A79 /* PNAPixelWorld2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNAPixelWorld2.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +138,8 @@
 				D0517CFC1917C91400D54A79 /* PNAViewController.m */,
 				D0517D101917F10C00D54A79 /* PNAWorldVController.h */,
 				D0517D111917F10C00D54A79 /* PNAWorldVController.m */,
+				D0517D131919155200D54A79 /* PNAPixelWorld2.h */,
+				D0517D141919155200D54A79 /* PNAPixelWorld2.m */,
 				D0517CD81917C6FD00D54A79 /* Images.xcassets */,
 				D0517CCD1917C6FD00D54A79 /* Supporting Files */,
 			);
@@ -287,6 +292,7 @@
 				D0517CFA1917C8D200D54A79 /* PNAPixelSounds.m in Sources */,
 				D0517CD71917C6FD00D54A79 /* PNAAppDelegate.m in Sources */,
 				D0517D121917F10C00D54A79 /* PNAWorldVController.m in Sources */,
+				D0517D151919155200D54A79 /* PNAPixelWorld2.m in Sources */,
 				D0517CD31917C6FD00D54A79 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -55,7 +55,6 @@
 }
 
 
-
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
 
@@ -79,14 +78,9 @@
         
         [self.animator addBehavior: self.gravityBehavior];
         
-        
-        
         self.collider = [[UICollisionBehavior alloc]initWithItems:self.blocks];
-        
         self.collider.collisionDelegate = self;
-        
         self.collider.collisionMode = UICollisionBehaviorModeBoundaries;
-        
         self.collider.translatesReferenceBoundsIntoBoundary = YES;
         
         
@@ -96,7 +90,13 @@
         [self.collider addBoundaryWithIdentifier:@"floor" fromPoint:CGPointMake(0, h) toPoint:CGPointMake(w, h)];
         
         [self.animator addBehavior:self.collider];
-    
+        
+        
+
+        self.blockDynamicProp = [[UIDynamicItemBehavior alloc] initWithItems:self.blocks];
+        self.blockDynamicProp.elasticity = 0.5f;
+        [self.animator addBehavior:self.blockDynamicProp];
+        
         
 //        self.pusher = [[UIPushBehavior alloc]initWithItems:self.blocks mode:UIPushBehaviorModeInstantaneous];
 //        
@@ -111,16 +111,14 @@
 -(void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id<UIDynamicItem>)item withBoundaryIdentifier:(id<NSCopying>)identifier atPoint:(CGPoint)p
 {
     
-    
     // specifying the identifer as an NSString
     if ([(NSString *)identifier isEqualToString:@"floor"])
     {
-        
          NSLog(@"collided");
        
-        sounds = [[PNAPixelSounds alloc] init];
-        
-        [sounds playSoundWithName:@"echo_alert"];
+//        sounds = [[PNAPixelSounds alloc] init];
+//        
+//        [sounds playSoundWithName:@"echo_alert"];
         
         // specifying the id
         
