@@ -32,11 +32,13 @@
 //}
 
 
+//Returns a new array containing the dictionary’s keys.
 -(NSArray *)allSections
 {
     return [self.sectionInfo allKeys];
 }
 
+//accessing the value for the key
 - (NSArray *)allRowsForSections:(NSString *)sectionName
 {
     return self.sectionInfo[sectionName];

@@ -7,18 +7,15 @@
 //
 
 #import "tdlTableViewCell.h"
+#import "tdlSingletonData.h"
 
 @implementation tdlTableViewCell
 
 {
-   
     UIImageView * profileImage;
     UILabel * profileName;
     UILabel * profileURL;
 }
-
-
-
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -44,29 +41,22 @@
     return self;
 }
 
-- (void) setProfileInfo:(NSDictionary *)profileInfo
+- (void) setIndex:(NSInteger)index
 {
-   
+    _index = index;
+    
+    NSDictionary * profileInfo = [[tdlSingletonData sharedCollection] allListItems][index];
+    
     NSURL *imageUrl = [NSURL URLWithString:profileInfo[@"image"]];
     
     NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
-   
-    UIImage *image = [UIImage imageWithData:imageData];
     
+    UIImage *image = [UIImage imageWithData:imageData];
     
     profileImage.image = image;
     profileName.text = profileInfo[@"name"];
     profileURL.text = profileInfo [@"github"];
     
-    _profileInfo = profileInfo;
-    
-}
-
-
-
-- (void)awakeFromNib
-{
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

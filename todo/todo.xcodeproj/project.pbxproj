@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D0517D5C19195C7000D54A79 /* tdlSingletonData.m in Sources */ = {isa = PBXBuildFile; fileRef = D0517D5B19195C7000D54A79 /* tdlSingletonData.m */; };
 		D07DC45B18EC4AE2006519C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D07DC45A18EC4AE2006519C0 /* Foundation.framework */; };
 		D07DC45D18EC4AE2006519C0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D07DC45C18EC4AE2006519C0 /* CoreGraphics.framework */; };
 		D07DC45F18EC4AE2006519C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D07DC45E18EC4AE2006519C0 /* UIKit.framework */; };
@@ -50,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D0517D5A19195C7000D54A79 /* tdlSingletonData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tdlSingletonData.h; sourceTree = "<group>"; };
+		D0517D5B19195C7000D54A79 /* tdlSingletonData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tdlSingletonData.m; sourceTree = "<group>"; };
 		D07DC45718EC4AE2006519C0 /* todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D07DC45A18EC4AE2006519C0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D07DC45C18EC4AE2006519C0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -213,6 +216,8 @@
 			children = (
 				D07DC48918EC4C96006519C0 /* tdlTableViewController.h */,
 				D07DC48A18EC4C96006519C0 /* tdlTableViewController.m */,
+				D0517D5A19195C7000D54A79 /* tdlSingletonData.h */,
+				D0517D5B19195C7000D54A79 /* tdlSingletonData.m */,
 				D0ABA41618EDA81C006C47D5 /* TableView */,
 			);
 			name = Controllers;
@@ -347,6 +352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0517D5C19195C7000D54A79 /* tdlSingletonData.m in Sources */,
 				D0ABA41418EDA796006C47D5 /* tdlTableViewCell.m in Sources */,
 				D07DC46718EC4AE2006519C0 /* main.m in Sources */,
 				D07DC48B18EC4C96006519C0 /* tdlTableViewController.m in Sources */,

@@ -11,6 +11,10 @@
 //importing to have it appear. ViewController is set as rootview controller
 #import "BBALevelController.h"
 
+//#import "BBASingletonData.h"
+
+#import "BBAGameData.h"
+
 //says VController will be delegate of LevelDelegate
 @interface BBAViewController () <BBALevelDelegate>
 
@@ -76,7 +80,7 @@ scoreLabel.backgroundColor = [UIColor clearColor];
 scoreLabel.textColor = [UIColor redColor];
 [scoreLabel setFont:[UIFont systemFontOfSize:12]];
 scoreLabel.textAlignment = NSTextAlignmentCenter;
-scoreLabel.text = [NSString stringWithFormat:@"Score: 0"];
+scoreLabel.text = [NSString stringWithFormat:@"Score: %d", [BBAGameData mainData].topScore];
 [self.view addSubview:scoreLabel];
     
     
@@ -125,12 +129,17 @@ livesLabel.textAlignment = NSTextAlignmentCenter;
 
 -(void)addPoints:(int)points
 {
-    scoreLabel.text = [NSString stringWithFormat:@"Score: %i",points];
+    
+    //scoreLabel.text = [BBASingletonData createSingleton].userData[@"current score"];
+    NSLog(@"log 2");
 }
 
 -(void)lifeCounter:(int)lives
 {
     livesLabel.text = [NSString stringWithFormat:@"Lives: %i",lives];
+    
+    //livesLabel.text = [NSString stringWithFormat:@"Lives: %@",[BBASingletonData createSingleton].userData[@"lives"]];
+    
 }
 
 //- (void)updatePoints:(int)points

@@ -43,20 +43,33 @@
 
 #pragma mark - Table view data source
 
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 
+    //Returns a new array containing the dictionary’s keys.
+    //-(NSArray *)allSections
+    //{
+    //    return [self.sectionInfo allKeys];
+    //}
+    
     // Return the number of sections.
     return [[[DNASingleton sharedSingleton] allSections] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    //accessing the value for the key
+//    - (NSArray *)allRowsForSections:(NSString *)sectionName
+//    {
+//        return self.sectionInfo[sectionName];
+//    }
 
     // Return the number of rows in the section.
-    NSLog(@"%d",(int)section);
+    //NSLog(@"%d",(int)section);
     
     NSString * sectionName = [[DNASingleton sharedSingleton] allSections] [section];
+   NSLog(@"%@",sectionName);
     
    return [[[DNASingleton sharedSingleton]allRowsForSections:sectionName] count];
 }

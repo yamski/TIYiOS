@@ -19,14 +19,12 @@
     
     [DNASingleton sharedSingleton].sectionInfo = @{
                                                    
-                 @"section1": @[@"row1", @"row2"],
-                 @"section2": @[@"row1", @"row2", @"row3"],
-                 @"section3": @[@"row1", @"row2", @"row3", @"row4"],
+                 @"sectionONE": @[@"row1", @"row2"],
+                 @"sectionTwo": @[@"row1", @"row2", @"row3"],
+                 @"sectionThree": @[@"row1", @"row2", @"row3", @"row4"],
                  @"section4": @[@"row1", @"row2"]
                  };
    
-
-    
     
     
     self.window.rootViewController = [[DNATableViewController alloc] initWithStyle:UITableViewStyleGrouped];

@@ -10,13 +10,15 @@
 #import "tdlTableViewCell.h"
 #import "tdlGitHubRequest.h"
 
+#import "tdlSingletonData.h"
+
 
 
 
 @implementation tdlTableViewController
 
 {
-    NSMutableArray *listItems;
+ 
     UITextField * nameField;
    
     
@@ -33,34 +35,10 @@
     self = [super initWithStyle:style];
     if (self)
     {
-//       
-//        UIBarButtonItem * editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(toggleEdit)];
-        
-        
-       
-        
-//        listItems = [@[
-//                      @{@"name" : @"Ali Houshmand", @"image" : [UIImage imageNamed:@"alihoushmand"], @"github" :@"https://github.com/HoushmandA06" },
-//                      @{@"name" : @"Ashby Thornwell", @"image" : [UIImage imageNamed:@"ashbythornwell"], @"github" :@"https://github.com/athornwell"},
-//                      @{@"name" : @"Austen Johnson", @"image" : [UIImage imageNamed:@"austenjohnson"], @"github" :@"https://github.com/ajohnson21"},
-//                      @{@"name" : @"Austin Nolan", @"image" : [UIImage imageNamed:@"austinnolan"], @"github" :@"https://github.com/adnolan99"},
-//                      @{@"name" : @"Derek Weber", @"image" : [UIImage imageNamed:@"derekweber"], @"github" :@"https://github.com/dweber03"},
-//                      @{@"name" : @"Ed Salter", @"image" : [UIImage imageNamed:@"edsalter"], @"github" :@"https://github.com/MadArkitekt"},
-//                      @{@"name" : @"Heidi", @"image" : [UIImage imageNamed:@"heidi"], @"github" :@"https://github.com/justagirlcoding"},
-//                      @{@"name" : @"Jeff King", @"image" : [UIImage imageNamed:@"jeffking"], @"github" :@"https://github.com/rampis"},
-//                      @{@"name" : @"Jeffery Moulds", @"image" : [UIImage imageNamed:@"jefferymoulds"], @"github" :@"https://github.com/jdmgithub"},
-//                      @{@"name" : @"Jisha Obukwelu", @"image" : [UIImage imageNamed:@"jishaobukwelu"], @"github" :@"https://github.com/Jiobu"},
-//                      @{@"name" : @"John Yam", @"image" : [UIImage imageNamed:@"johnyam"], @"github" :@"https://github.com/yamski"},
-//                      @{@"name" : @"Jon Fox", @"image" : [UIImage imageNamed:@"jonfox"], @"github" :@"https://github.com/FoxJon"},
-//                      @{@"name" : @"Savitha Reddy", @"image" : [UIImage imageNamed:@"savithareddy"], @"github" :@"https://github.com/savithareddy"},
-//                      @{@"name" : @"Teddy Conyers", @"image" : [UIImage imageNamed:@"teddyconyers"], @"github" :@"https://github.com/talented76"},
-//                      @{@"name" : @"T.J. Mercer", @"image" : [UIImage imageNamed:@"tjmercer"], @"github" :@"https://github.com/gwanunig14"}
-//                                                                
-//                      ] mutableCopy];
 
-        listItems = [@[] mutableCopy];
+        //listItems = [@[] mutableCopy];
         
-        [self loadListItems];
+
         
         self.tableView.contentInset = UIEdgeInsetsMake(50, 0, 0, 0);
         self.tableView.rowHeight = 100;
@@ -136,7 +114,10 @@
     NSDictionary * userInfo = [tdlGitHubRequest getUserWithUsername:userName];
     if([[userInfo allKeys] count] == 3)
         {
-            [listItems addObject:userInfo];
+            [[tdlSingletonData sharedCollection] addListItems:userInfo];
+            
+            //[listItems addObject:userInfo];
+            
         } else {
             NSLog(@"not enough data");
             
@@ -180,7 +161,7 @@
 {
 
     // Return the number of rows in the section.
-    return [listItems count];
+    return [[[tdlSingletonData sharedCollection]allListItems] count];
 }
 
 
@@ -192,17 +173,15 @@
                                                     reuseIdentifier: @"cell"];
     
     
-   cell.profileInfo = [self getListItem:indexPath.row];
-    
- 
-   
+   //cell.profileInfo = [self getListItem:indexPath.row];
+    cell.index = indexPath.row;
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary * listItem = [self getListItem:indexPath.row];
+    NSDictionary * listItem = [[tdlSingletonData sharedCollection]allListItems][indexPath.row];
     NSLog(@"%@",listItem);
     
     UIViewController * webController = [[UIViewController alloc] init];
@@ -230,16 +209,15 @@
 {
     //[listItems removeObjectAtIndex:indexPath.row];
     
-    NSDictionary * listItem = [self getListItem:indexPath.row];
-    [listItems removeObjectIdenticalTo:listItem];
+    [[tdlSingletonData sharedCollection]removeListItemAtIndex:indexPath.row];
+    
+    //[listItems removeObjectIdenticalTo:listItem];
     //[self.tableView reloadData];
     
     tdlTableViewCell *cell = (tdlTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     cell.alpha = 0;
     
     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    
-    [self saveData];
     
 }
 
@@ -249,46 +227,25 @@
     return YES;
 }
 
--(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
-{
-    if (sourceIndexPath == destinationIndexPath) return;
-   
-    NSDictionary * sourceItem = [self getListItem:sourceIndexPath.row];
-    NSDictionary * toItem = [self getListItem:destinationIndexPath.row];
-    [listItems removeObjectIdenticalTo:sourceItem];
-    [listItems insertObject:sourceItem atIndex:[listItems indexOfObject:toItem]];
-    
-    [self saveData];
-    
-}
+//-(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+//{
+//    if (sourceIndexPath == destinationIndexPath) return;
+//   
+//    NSDictionary * sourceItem = [self getListItem:sourceIndexPath.row];
+//    NSDictionary * toItem = [self getListItem:destinationIndexPath.row];
+//    [listItems removeObjectIdenticalTo:sourceItem];
+//    [listItems insertObject:sourceItem atIndex:[listItems indexOfObject:toItem]];
+//    
+//    [self saveData];
+//    
+//}
 
-- (NSDictionary *)getListItem:(NSInteger)row
-{
-    NSArray * reverseArray = [[listItems reverseObjectEnumerator] allObjects];
-    return reverseArray[row];
-}
+//- (NSDictionary *)getListItem:(NSInteger)row
+//{
+//    NSArray * reverseArray = [[listItems reverseObjectEnumerator] allObjects];
+//    return reverseArray[row];
+//}
 
-- (void)saveData
-{
-    NSString *path = [self listArchivePath];
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:listItems];
-    [data writeToFile:path options:NSDataWritingAtomic error:nil];
-}
 
-- (NSString *)listArchivePath
-{
-    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentDirectory = documentDirectories[0];
-    return [documentDirectory stringByAppendingPathComponent:@"list.data"];
-}
-
-- (void)loadListItems
-{
-    NSString *path = [self listArchivePath];
-    if([[NSFileManager defaultManager] fileExistsAtPath:path])
-    {
-        listItems = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
-    }
-}
 
 @end

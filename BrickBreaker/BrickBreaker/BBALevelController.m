@@ -10,11 +10,17 @@
 
 #import <AVFoundation/AVFoundation.h>
 
+//#import "BBASingletonData.h"
+
+#import "BBAGameData.h"
+
 
 // adding a delegate. Allows contoller to know collison happened btween 2 items
-@interface BBALevelController () <UICollisionBehaviorDelegate>
+@interface BBALevelController () <UICollisionBehaviorDelegate, AVAudioPlayerDelegate>
 
-@property (nonatomic) AVAudioPlayer * player;
+//@property (nonatomic) AVAudioPlayer * player;
+
+@property (nonatomic) NSMutableArray * players;
 
 // declaring properties here makes them private. .h = public
 @property (nonatomic) UIView * paddle;
@@ -61,16 +67,24 @@
         paddleWidth = 80;
         self.bricks = [@[] mutableCopy];
         self.balls = [@[] mutableCopy];
+        
+        self.players = [@[] mutableCopy];
         self.view.backgroundColor = [UIColor whiteColor];
         
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapScreen:)];
         
         [self.view addGestureRecognizer:tap];
         
+       
         
-        self.player = [[AVAudioPlayer alloc]init];
+//        self.player = [[AVAudioPlayer alloc]init];
     }
     return self;
+}
+
+-(void)audioPlayerDidNotFinishPlaying:(AVAudioPlayer * )player successfully: (BOOL)flag
+{
+    [self.players removeObjectIdenticalTo:player];
 }
 
 -(void)playSoundWithName:(NSString *)soundName
@@ -79,9 +93,13 @@
     
     NSURL *url = [[NSURL alloc] initFileURLWithPath:file];
     
-    self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+    AVAudioPlayer * player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
     
-    [self.player play];
+    [self.players addObject:player];
+    
+     player.delegate = self;
+    
+    [player play];
 }
 
 - (void)viewDidLoad
@@ -138,6 +156,8 @@
     [self.collider addBoundaryWithIdentifier:@"floor" fromPoint:CGPointMake(0, h + 10) toPoint:CGPointMake(w, h + 10)];
     
     [self.animator addBehavior:self.collider];
+    
+    [BBAGameData mainData].currentScore = 0;
 
 }
 
@@ -170,8 +190,19 @@
                 points += brick.tag;
                 
                 NSLog(@"Total points = %i", points);
+            
+                //getter, getting the value
+                NSInteger currentScore = [BBAGameData mainData].currentScore;
                 
-                [self.delegate addPoints:points];
+                //setter
+                [BBAGameData mainData].currentScore = currentScore + brick.tag;
+                
+                
+                //[[BBASingletonData createSingleton].userData setObject:[NSNumber numberWithInt:points] forKey:@"current score"];
+                
+                NSLog(@"log 1");
+                
+               [self.delegate addPoints:points];
                 
                 [self pointLabelWithBrick:brick];
             }
@@ -211,6 +242,11 @@
         {
             [self.balls removeLastObject];
             lives--;
+            
+            
+            //[[BBASingletonData createSingleton].userData setObject:[NSNumber numberWithInt:lives] forKey:@"lives"];
+            
+            
             [self.delegate lifeCounter:lives];
             [self createBall];
             self.ballsDynamicProperties = [self createPropertiesForItems:self.balls];
