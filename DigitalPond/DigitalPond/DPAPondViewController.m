@@ -67,16 +67,6 @@
     return self;
 }
 
-//- (void) SwipeRecognizer:(UISwipeGestureRecognizer *)sender {
-//    if ( sender.direction | UISwipeGestureRecognizerDirectionLeft )
-//        NSLog(@" *** SWIPE LEFT ***");
-//    if ( sender.direction | UISwipeGestureRecognizerDirectionRight )
-//        NSLog(@" *** SWIPE RIGHT ***");
-//    if ( sender.direction | UISwipeGestureRecognizerDirectionDown )
-//        NSLog(@" *** SWIPE DOWN ***");
-//    if ( sender.direction | UISwipeGestureRecognizerDirectionUp )
-//        NSLog(@" *** SWIPE UP ***");
-//}
 
 - (void) swipe:(UISwipeGestureRecognizer *)gesture
 {
