@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D01A910A19281DA3000D7AFA /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = D01A910919281DA3000D7AFA /* heart.png */; };
 		D0A748751907F64500F96D3E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A748741907F64500F96D3E /* Foundation.framework */; };
 		D0A748771907F64500F96D3E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A748761907F64500F96D3E /* CoreGraphics.framework */; };
 		D0A748791907F64500F96D3E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A748781907F64500F96D3E /* UIKit.framework */; };
@@ -21,7 +22,6 @@
 		D0A7489A1907F64500F96D3E /* Tweet_LikeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A748991907F64500F96D3E /* Tweet_LikeTests.m */; };
 		D0A748A51907F68400F96D3E /* TLATableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A748A41907F68400F96D3E /* TLATableVC.m */; };
 		D0A748A81907FA4D00F96D3E /* TLATableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A748A71907FA4D00F96D3E /* TLATableViewCell.m */; };
-		D0A748AA1907FDAF00F96D3E /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A748A91907FDAF00F96D3E /* heart.png */; };
 		D0E3ACF71908188D00CF5D40 /* TLANavController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E3ACF61908188D00CF5D40 /* TLANavController.m */; };
 		D0E3ACFD19083B7500CF5D40 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D0E3ACFC19083B7500CF5D40 /* logo.png */; };
 /* End PBXBuildFile section */
@@ -37,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D01A910919281DA3000D7AFA /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
 		D0A748711907F64500F96D3E /* Tweet_Like.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tweet_Like.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0A748741907F64500F96D3E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D0A748761907F64500F96D3E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -57,7 +58,6 @@
 		D0A748A41907F68400F96D3E /* TLATableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLATableVC.m; sourceTree = "<group>"; };
 		D0A748A61907FA4D00F96D3E /* TLATableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLATableViewCell.h; sourceTree = "<group>"; };
 		D0A748A71907FA4D00F96D3E /* TLATableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLATableViewCell.m; sourceTree = "<group>"; };
-		D0A748A91907FDAF00F96D3E /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart.png; path = ../../../../Desktop/heart.png; sourceTree = "<group>"; };
 		D0E3ACF51908188D00CF5D40 /* TLANavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLANavController.h; sourceTree = "<group>"; };
 		D0E3ACF61908188D00CF5D40 /* TLANavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLANavController.m; sourceTree = "<group>"; };
 		D0E3ACFC19083B7500CF5D40 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = ../../../../Desktop/logo.png; sourceTree = "<group>"; };
@@ -91,7 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				D0E3ACF81908189500CF5D40 /* controllers */,
-				D0A748A91907FDAF00F96D3E /* heart.png */,
+				D01A910919281DA3000D7AFA /* heart.png */,
 				D0E3ACFC19083B7500CF5D40 /* logo.png */,
 				D0A748A61907FA4D00F96D3E /* TLATableViewCell.h */,
 				D0A748A71907FA4D00F96D3E /* TLATableViewCell.m */,
@@ -251,7 +251,7 @@
 			files = (
 				D0E3ACFD19083B7500CF5D40 /* logo.png in Resources */,
 				D0A7487F1907F64500F96D3E /* InfoPlist.strings in Resources */,
-				D0A748AA1907FDAF00F96D3E /* heart.png in Resources */,
+				D01A910A19281DA3000D7AFA /* heart.png in Resources */,
 				D0A748871907F64500F96D3E /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
