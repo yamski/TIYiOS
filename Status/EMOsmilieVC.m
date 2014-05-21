@@ -8,8 +8,10 @@
 
 #import "EMOsmilieVC.h"
 #import "STTwitter.h"
+#import <CoreLocation/CoreLocation.h>
+//#import <MapKit/MapKit.h>
 
-@interface EMOsmilieVC ()
+@interface EMOsmilieVC () <CLLocationManagerDelegate>
 
 @property (nonatomic) BOOL twitterOn;
 @property (nonatomic) BOOL googleOn;
@@ -24,7 +26,12 @@
     NSArray * bigSmilies;
     UIImageView * bigSmilie;
     STTwitterAPI * twitter;
-
+    
+    CLLocationManager * lManager;
+    CLLocation * currentLocation;
+    
+    NSString * myLatitude;
+    NSString * myLongitude;
 }
 
 
@@ -53,6 +60,14 @@
         
         NSLog(@"%d",self.twitterOn);
         
+        lManager = [[CLLocationManager alloc]init];
+        
+        lManager.delegate = self;
+        [lManager startUpdatingLocation];
+        
+        currentLocation = [[CLLocation alloc]init];
+        
+    
     }
     return self;
 }
@@ -97,6 +112,38 @@
     [check addTarget:self action:@selector(publish) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:check];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    currentLocation = [locations objectAtIndex:0];
+    [lManager stopUpdatingLocation];
+    CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
+    
+    [geoCoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *placemarks, NSError *error)
+     {
+         CLPlacemark * placemark = [placemarks objectAtIndex:0];
+         NSLog(@"Current Location Detected");
+         NSLog(@"placemark %@", placemark);
+         NSLog(@"placemark %@", placemarks);
+         
+     
+         NSString * locatedAt = [[placemark.addressDictionary valueForKey:@"FormattedAddressLines"]componentsJoinedByString:@","];
+         NSString * address = [[NSString alloc]initWithString:locatedAt];
+         NSString * area = [[NSString alloc]initWithString:placemark.locality];
+         NSLog(@"%@, %@", address, area);
+         
+         
+         float locationLong = currentLocation.coordinate.longitude;
+         float locationLat = currentLocation.coordinate.latitude;
+         
+         myLongitude = [NSString stringWithFormat:@"%f",locationLong];
+         myLatitude = [NSString stringWithFormat:@"%f", locationLat];
+         
+         
+     }];
+    
+    
 }
 
 -(void)loadSmilie:(NSInteger)num
@@ -149,7 +196,7 @@
         [imageData writeToFile:pngPath atomically:YES];
         NSURL * url = [NSURL fileURLWithPath:pngPath];
         
-        [twitter postStatusUpdate:@"app test" inReplyToStatusID:nil mediaURL:url placeID:nil latitude:nil longitude:nil uploadProgressBlock:^(NSInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite) {
+        [twitter postStatusUpdate:@"Location Integration test" inReplyToStatusID:nil mediaURL:url placeID:nil latitude:myLatitude longitude:myLongitude uploadProgressBlock:^(NSInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite) {
             NSLog(@"posted!");
         } successBlock:^(NSDictionary *status) {
             
