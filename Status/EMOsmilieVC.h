@@ -10,6 +10,7 @@
 
 @interface EMOsmilieVC : UIViewController
 
-- (void)loadSmilie:(int)num;
+
+- (void)loadSmilie:(NSInteger)num;
 
 @end

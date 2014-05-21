@@ -17,7 +17,7 @@
 {
     UIImageView * selectSquare;
     
-    int colorValue;
+    NSInteger colorValue;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -88,10 +88,10 @@
     colorValue = sender.tag;
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
-}
+//- (void)viewWillAppear:(BOOL)animated{
+//
+//    [self.navigationController setNavigationBarHidden:YES animated:NO];
+//}
 
 -(void)smilieVC
 {

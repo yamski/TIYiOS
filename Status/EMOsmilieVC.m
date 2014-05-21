@@ -7,6 +7,7 @@
 //
 
 #import "EMOsmilieVC.h"
+#import "STTwitter.h"
 
 @interface EMOsmilieVC ()
 
@@ -20,9 +21,12 @@
 
 @implementation EMOsmilieVC
 {
-    UIButton * socialButtons;
-    NSArray * socialIcons;
+    NSArray * bigSmilies;
+    UIImageView * bigSmilie;
+    STTwitterAPI * twitter;
+
 }
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,103 +37,145 @@
         self.view.backgroundColor = [UIColor whiteColor];
         
         
+         bigSmilies = @[@"yellow_1.png", @"yellow_2.png", @"yellow_3.png", @"yellow_4.png", @"yellow_5.png", @"yellow_6.png", @"yellow_7.png", @"yellow_8.png", @"yellow_9.png"];
+        
+        twitter = [STTwitterAPI twitterAPIOSWithFirstAccount];
+        
+        [twitter verifyCredentialsWithSuccessBlock:^(NSString *username) {
+            
+            NSLog(@"%@", username);
+            
+        } errorBlock:^(NSError *error) {
+            
+            NSLog(@"%@", error.userInfo);
+            
+        }];
+        
+        NSLog(@"%d",self.twitterOn);
         
     }
     return self;
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+  //  if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+    //    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     // Do any additional setup after loading the view.
     
-    socialIcons = @[@"sm_twitter_g", @"sM_google_g", @"sm_facebook_g"];
+    NSArray * socialIcons = @[@"sm_twitter_g", @"sm_google_g", @"sm_facebook_g"];
     
-   
+    NSArray * socialHighlighted = @[@"sm_twitter", @"sm_google", @"sm_facebook"];
     
    for (int i = 0; i < 3; i++)
    {
-       socialButtons = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2 - 92) + 68 *i , 40, 48, 48)];
+       UIButton * socialButtons = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2 - 92) + 68 *i , 40, 48, 48)];
        socialButtons.tag = i;
        [socialButtons setImage:[UIImage imageNamed: socialIcons[i]] forState:UIControlStateNormal];
+       [socialButtons setImage:[UIImage imageNamed: socialHighlighted[i]] forState:UIControlStateSelected];
        
-       [socialButtons addTarget:self action:@selector(connectSocial:) forControlEvents: UIControlEventTouchUpInside];
+       [socialButtons addTarget:self action:@selector(iconSwitch:) forControlEvents: UIControlEventTouchUpInside];
        [self.view addSubview:socialButtons];
        
     }
     
+    UIButton * arrow = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2 -72, SCREEN_HEIGHT - 80, 48, 56)];
     
-    UIButton * check = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2 -32, SCREEN_HEIGHT - 80, 62, 40)];
+    arrow.transform=CGAffineTransformMakeRotation(M_PI / -1);
+    
+    [arrow setImage:[UIImage imageNamed:@"arrow"] forState:UIControlStateNormal];
+    [arrow addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:arrow];
+    
+    UIButton * check = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2 - 2, SCREEN_HEIGHT - 70, 62, 40)];
     [check setImage:[UIImage imageNamed:@"check"] forState:UIControlStateNormal];
     [check addTarget:self action:@selector(publish) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:check];
-    
 }
 
--(void)loadSmilie:(int)num
+-(void)loadSmilie:(NSInteger)num
 {
-    NSArray * bigSmilies = @[@"yellow_1.png", @"yellow_2.png", @"yellow_3.png", @"yellow_4.png", @"yellow_5.png", @"yellow_6.png", @"yellow_7.png", @"yellow_8.png", @"yellow_9.png"];
-    
-    UIImageView * bigSmilie = [[UIImageView alloc]initWithImage: [UIImage imageNamed: bigSmilies[num]]];
+    bigSmilie = [[UIImageView alloc]initWithImage: [UIImage imageNamed: bigSmilies[num]]];
     bigSmilie.frame = CGRectMake(SCREEN_WIDTH / 2 -96, SCREEN_HEIGHT/2 -96, 192, 192);
     
     [self.view addSubview:bigSmilie];
     
 }
 
+- (void)iconSwitch:(UIButton *)sender
+{
+    [sender setSelected:!sender.selected];
+    
+    if (sender.tag == 0) {
+        
+        _twitterOn = !_twitterOn;
+        
+        NSLog(@"%d",self.twitterOn);
+    }
+    else if (sender.tag == 2){
+        
+    _fbOn = !_fbOn;
+        
+    }
+}
+
+- (void)back
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    
+    //[self.navigationController popToViewController:self.navigationController.viewControllers[0] animated:YES];
+}
 
 - (void)publish
 {
     
+    if (_twitterOn)
+    {
+        
+        NSLog(@"twitter on");
+        
+        NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString * documentPath = paths[0];
+        
+        NSData * imageData = UIImagePNGRepresentation(bigSmilie.image);
+        
+        NSString* pngPath = [documentPath stringByAppendingPathComponent:@"big_smilie.png"];
+        [imageData writeToFile:pngPath atomically:YES];
+        NSURL * url = [NSURL fileURLWithPath:pngPath];
+        
+        [twitter postStatusUpdate:@"app test" inReplyToStatusID:nil mediaURL:url placeID:nil latitude:nil longitude:nil uploadProgressBlock:^(NSInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite) {
+            NSLog(@"posted!");
+        } successBlock:^(NSDictionary *status) {
+            
+            NSLog(@"%@", status);
+            
+        } errorBlock:^(NSError *error) {
+             NSLog(@"%@", error.userInfo);
+        }];
+        
+    } else
+    {
+        NSLog(@"twitter off");
+        return;
+    }
+    
+    
+//    if (_fbOn) {
+//        NSLog(@"FB on");
+//    }
+//    else
+//    {
+//        NSLog(@"FB off");
+//    }
+    
 }
 
-- (void)connectSocial:(UIButton *)sender
-{
-     NSArray * socialHighlighted = @[@"sm_twitter", @"sm_google", @"sm_facebook"];
-    
-    switch (sender.tag)
-    {
-        case 0:
-            
-            if( [[sender imageForState:UIControlStateNormal] isEqual:[UIImage imageNamed:@"sm_twitter_g"]])
-            {
-               [sender setImage:[UIImage imageNamed: socialHighlighted[0]] forState:UIControlStateNormal];
-            }
-            else
-            {
-                [sender setImage:[UIImage imageNamed: socialIcons[0]] forState:UIControlStateNormal];
-            }
-            
-            break;
-        case 1:
-            if( [[sender imageForState:UIControlStateNormal] isEqual:[UIImage imageNamed:@"sM_google_g"]])
-            {
-                [sender setImage:[UIImage imageNamed: socialHighlighted[1]] forState:UIControlStateNormal];
-            }
-            else
-            {
-                [sender setImage:[UIImage imageNamed: socialIcons[1]] forState:UIControlStateNormal];
-            }
-            
-            break;
-        case 2:
-            if( [[sender imageForState:UIControlStateNormal] isEqual:[UIImage imageNamed:@"sm_facebook_g"]])
-            {
-                [sender setImage:[UIImage imageNamed: socialHighlighted[1]] forState:UIControlStateNormal];
-            }
-            else
-            {
-                [sender setImage:[UIImage imageNamed: socialIcons[1]] forState:UIControlStateNormal];
-            }
-           
-            break;
-        
-        default:
-            NSLog (@"Integer out of range");
-            break;
-    }
-}
 
 - (void)didReceiveMemoryWarning
 {

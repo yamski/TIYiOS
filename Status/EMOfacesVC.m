@@ -16,7 +16,7 @@
 @implementation EMOfacesVC
 {
     UIImageView * selectSquare;
-    int smilieID;
+    NSInteger smilieID;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -34,8 +34,16 @@
 {
     [super viewDidLoad];
     
+    UIButton * arrow = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2 -72, SCREEN_HEIGHT - 80, 48, 56)];
     
-    UIButton * check = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2 -32, SCREEN_HEIGHT - 80, 62, 40)];
+    arrow.transform=CGAffineTransformMakeRotation(M_PI / -1);
+    
+    [arrow setImage:[UIImage imageNamed:@"arrow"] forState:UIControlStateNormal];
+    [arrow addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:arrow];
+    
+    UIButton * check = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2 - 2, SCREEN_HEIGHT - 70, 62, 40)];
     [check setImage:[UIImage imageNamed:@"check"] forState:UIControlStateNormal];
     [check addTarget:self action:@selector(completeSmilie) forControlEvents:UIControlEventTouchUpInside];
     
@@ -46,7 +54,7 @@
     
    }
 
-- (void) loadsSmilies:(int)smilieNum
+- (void) loadsSmilies:(NSInteger)smilieNum
 {
     NSArray * smilieImages = @[
                                @[@"smilies_1", @"smilies_2", @"smilies_3", @"smilies_4", @"smilies_5", @"smilies_6", @"smilies_7", @"smilies_8", @"smilies_9"],
@@ -87,6 +95,11 @@
     }
 }
 
+-(void)back
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 - (void)completeSmilie
 {
     EMOsmilieVC * smilieVC = [[EMOsmilieVC alloc]init];
@@ -110,6 +123,10 @@
     smilieID = sender.tag;
 }
 
+//- (void)viewWillAppear:(BOOL)animated{
+//    
+//    [self.navigationController setNavigationBarHidden:NO animated:NO];
+//}
 
 
 
